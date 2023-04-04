@@ -1,8 +1,8 @@
-// Importerar moduler/dependencies
+// Imports modules and dependencies
 const express = require("express");
 const { Pool } = require("pg");
 
-// Importerar inloggningsuppgifter från .env
+// Imports login credentials from .env
 require("dotenv").config();
 
 const app = express();
@@ -15,7 +15,7 @@ const pool = new Pool({
   port: process.env.PGPORT,
 });
 
-// Simpel kod som testar databasuppkoppling
+// Simple code that tests Database connection
 (async () => {
   try {
     await pool.connect();
@@ -23,7 +23,7 @@ const pool = new Pool({
   } catch (err) {
     console.error("Database connection error", err);
   } finally {
-    // End the database connection
+    // Ends the Database connection
     await pool.end();
   }
 })();
