@@ -14,7 +14,7 @@ app.use(express.static("public"));
 
 // Template Engine
 app.use(expressLayouts);
-app.set("layout", "./layouts/template");
+app.set("layout", "./layouts/main");
 app.set("view engine", "ejs");
 
 //Middleware (urlencoded & json needed?)
@@ -30,7 +30,7 @@ const pool = new Pool({
 });
 
 app.get("/", (req, res) => {
-  res.render("notes");
+  res.render("pages/notes");
 });
 
 // Simple code that tests Database connection
