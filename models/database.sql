@@ -1,3 +1,32 @@
-CREATE TABLE notes (
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    UNIQUE (username)
+);
 
+CREATE TABLE notes (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT_CURRENT_TIMESTAMP,
+    updated TIMESTAMP NOT NULL DEFAULT_CURRENT_TIMESTAMP
+    FOREIGN KEY (user_id) REFERENCES users (id) 
+);
+
+CREATE TABLE achievements(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+);
+
+CREATE TABLE user_achievements (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    achievement_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id),  
+    FOREIGN KEY (achievement_id) REFERENCES achievements (id)
 );
