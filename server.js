@@ -33,6 +33,14 @@ app.get("/", (req, res) => {
   res.render("pages/notes");
 });
 
+app.get("/users/login", (req, res) => {
+  res.render("pages/login");
+});
+
+app.get("/users/register", (req, res) => {
+  res.render("pages/register");
+});
+
 // Simple code that tests Database connection
 (async () => {
   try {
