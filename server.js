@@ -2,6 +2,8 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const { Pool } = require("pg");
+const bcrypt = require("bcrypt");
+const session = require("express-session");
 
 // Imports login credentials from .env
 require("dotenv").config();
@@ -20,6 +22,13 @@ app.set("view engine", "ejs");
 //Middleware (urlencoded & json needed?)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(
+  session({
+    secret: "secret", //Need to use .env for this
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 const pool = new Pool({
   user: process.env.PGUSER,
