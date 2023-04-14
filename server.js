@@ -54,6 +54,11 @@ app.get("/users/dashboard", (req, res) => {
   res.render("pages/dashboard", { user: "Doe" });
 });
 
+app.post("/users/register", (req, res) => {
+  let { username, password, password2 } = req.body;
+  console.log(username, password, password2);
+});
+
 // Simple code that tests Database connection
 (async () => {
   try {
