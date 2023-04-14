@@ -39,7 +39,7 @@ const pool = new Pool({
 });
 
 app.get("/", (req, res) => {
-  res.render("pages/notes");
+  res.render("pages/index");
 });
 
 app.get("/users/register", (req, res) => {
@@ -48,6 +48,10 @@ app.get("/users/register", (req, res) => {
 
 app.get("/users/login", (req, res) => {
   res.render("pages/login");
+});
+
+app.get("/users/dashboard", (req, res) => {
+  res.render("pages/dashboard", { user: "Doe" });
 });
 
 // Simple code that tests Database connection
