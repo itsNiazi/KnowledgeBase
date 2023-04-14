@@ -39,7 +39,7 @@ const pool = new Pool({
 });
 
 app.get("/", (req, res) => {
-  res.render("pages/index");
+  res.render("pages/");
 });
 
 app.get("/users/register", (req, res) => {
@@ -54,9 +54,41 @@ app.get("/users/dashboard", (req, res) => {
   res.render("pages/dashboard", { user: "Doe" });
 });
 
-app.post("/users/register", (req, res) => {
+app.post("/users/register", async (req, res) => {
   let { username, password, password2 } = req.body;
-  console.log(username, password, password2);
+  console.log({ username, password, password2 });
+
+  let errors = [];
+  if (!username || !password || !password2) {
+    errors.push({ message: "Please enter all fields" });
+  }
+  if (password.length < 6) {
+    errors.push({ message: "Password should be atleast 6 characters" });
+  }
+  if (password != password2) {
+    errors.push({ message: "Passwords do not match" });
+  }
+  if (errors.length > 0) {
+    res.render("pages/register", { errors });
+  } else {
+    let hashedPassword = await bcrypt.hash(password, 10);
+    console.log(hashedPassword);
+
+    pool.query(
+      `SELECT * FROM users WHERE username = $1`,
+      [username],
+      (err, results) => {
+        if (err) {
+          throw err;
+        }
+        console.log(results.rows);
+        if (results.rows.length > 0) {
+          errors.push({ message: "Username already registered" });
+          res.render("pages/register", { errors });
+        }
+      }
+    );
+  }
 });
 
 // Simple code that tests Database connection
@@ -68,7 +100,7 @@ app.post("/users/register", (req, res) => {
     console.error("Database connection error", err);
   } finally {
     // Ends the Database connection
-    await pool.end();
+    // await pool.end();
   }
 })();
 

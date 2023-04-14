@@ -7,5 +7,15 @@
         <input type="submit" value="Sign Up">
     </fieldset>
 </form>
+<ul>
+    <% if (typeof errors !=='undefined' ) { %>
+        <% errors.forEach(error=> { %>
+            <li>
+                <%= error.message %>
+            </li>
+            <% }); %>
+                <% } %>
+</ul>
+
 
 <a href="/users/login">Already signed up?</a>
