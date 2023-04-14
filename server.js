@@ -85,6 +85,20 @@ app.post("/users/register", async (req, res) => {
         if (results.rows.length > 0) {
           errors.push({ message: "Username already registered" });
           res.render("pages/register", { errors });
+        } else {
+          pool.query(
+            `INSERT INTO users (username, password)
+            VALUES ($1, $2)
+            RETURNING id, password`,
+            [username, hashedPassword],
+            (err, results) => {
+              if (err) {
+                throw err;
+              }
+              console.log(results.rows);
+              res.redirect("/users/login");
+            }
+          );
         }
       }
     );
