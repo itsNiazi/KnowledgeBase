@@ -4,6 +4,11 @@ const expressLayouts = require("express-ejs-layouts");
 const { Pool } = require("pg");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
+const flash = require("express-flash");
+const passport = require("passport");
+
+const initializePassport = require("./passportConfig");
+initializePassport(passport);
 
 // Imports login credentials from .env
 require("dotenv").config();
@@ -29,6 +34,9 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 const pool = new Pool({
   user: process.env.PGUSER,
@@ -42,16 +50,22 @@ app.get("/", (req, res) => {
   res.render("pages/");
 });
 
-app.get("/users/register", (req, res) => {
+app.get("/users/register", checkAuthenticated, (req, res) => {
   res.render("pages/register");
 });
 
-app.get("/users/login", (req, res) => {
-  res.render("pages/login");
+app.get("/users/login", checkAuthenticated, (req, res) => {
+  res.render("pages/login", { message: req.flash("message") });
 });
 
-app.get("/users/dashboard", (req, res) => {
-  res.render("pages/dashboard", { user: "Doe" });
+app.get("/users/dashboard", checkNotAuthenticated, (req, res) => {
+  res.render("pages/dashboard", { user: req.user.username });
+});
+
+app.get("/users/logout", (req, res) => {
+  req.logOut(() => {
+    res.redirect("/users/login");
+  });
 });
 
 app.post("/users/register", async (req, res) => {
@@ -104,7 +118,27 @@ app.post("/users/register", async (req, res) => {
     );
   }
 });
+app.post(
+  "/users/login",
+  passport.authenticate("local", {
+    successRedirect: "/users/dashboard",
+    failureRedirect: "/users/login",
+    failureFlash: true,
+  })
+);
 
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/users/dashboard");
+  }
+  next();
+}
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/users/login");
+}
 // Simple code that tests Database connection
 (async () => {
   try {
