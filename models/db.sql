@@ -11,8 +11,8 @@ CREATE TABLE notes (
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     category VARCHAR(255) NOT NULL,
-    created TIMESTAMP NOT NULL DEFAULT_CURRENT_TIMESTAMP,
-    updated TIMESTAMP NOT NULL DEFAULT_CURRENT_TIMESTAMP
+    created TIMESTAMP NOT NULL,
+    updated TIMESTAMP NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id) 
 );
 
@@ -20,7 +20,7 @@ CREATE TABLE achievements(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    image_url VARCHAR(255) NOT NULL,
+    image_url VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE user_achievements (

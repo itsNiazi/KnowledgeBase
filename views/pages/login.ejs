@@ -6,5 +6,11 @@
         <input type="submit" value="Sign In">
     </fieldset>
 </form>
+<% if (messages.error && messages.error.length> 0) { %>
+    <div>
+        <%= messages.error[0] %>
+    </div>
+    <% } %>
 
-<a href="register">Not a member?</a>
+
+        <a href="/users/register">Not a member?</a>
