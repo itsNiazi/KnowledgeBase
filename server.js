@@ -1,17 +1,16 @@
-// Imports modules and dependencies
+// Imports dependencies
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-const { Pool } = require("pg");
+// const { Pool } = require("pg");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const flash = require("express-flash");
 const passport = require("passport");
 
-const initializePassport = require("./passportConfig");
+// Imports modules
+const pool = require("./models/db");
+const initializePassport = require("./config/passportConfig");
 initializePassport(passport);
-
-// Imports login credentials from .env
-require("dotenv").config();
 
 const app = express();
 const port = 3000;
@@ -29,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
   session({
-    secret: "secret", //Need to use .env for this
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
@@ -38,14 +37,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-const pool = new Pool({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT,
-});
-
+// GET Routes
 app.get("/", (req, res) => {
   res.render("pages/");
 });
@@ -68,6 +60,7 @@ app.get("/users/logout", (req, res) => {
   });
 });
 
+// POST routes
 app.post("/users/register", async (req, res) => {
   let { username, password, password2 } = req.body;
   console.log({ username, password, password2 });
@@ -118,6 +111,7 @@ app.post("/users/register", async (req, res) => {
     );
   }
 });
+
 app.post(
   "/users/login",
   passport.authenticate("local", {
