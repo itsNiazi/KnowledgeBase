@@ -7,16 +7,10 @@
     </fieldset>
 </form>
 <% if (messages.error && messages.error.length> 0) { %>
-    <div class="alert alert-danger" role="alert">
+    <div>
         <%= messages.error[0] %>
     </div>
     <% } %>
 
-        <% if (messages.success && messages.success.length> 0) { %>
-            <div class="alert alert-success" role="alert">
-                <%= messages.success[0] %>
-            </div>
-            <% } %>
 
-
-                <a href="/users/register">Not a member?</a>
+        <a href="/users/register">Not a member?</a>

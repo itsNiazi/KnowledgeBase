@@ -29,7 +29,7 @@ function initialize(passport) {
             if (isMatch) {
               return done(null, user);
             } else {
-              return done(null, false, { message: "Password is not correct" });
+              return done(null, false, { message: "Password is incorrect" });
             }
           });
         } else {
