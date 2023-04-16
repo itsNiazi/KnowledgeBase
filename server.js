@@ -19,7 +19,6 @@ app.use(express.static("public"));
 // Template Engine
 app.use(expressLayouts);
 app.set("layout", "./layouts/main");
-
 app.set("view engine", "ejs");
 
 //Middleware (urlencoded & json needed?)
