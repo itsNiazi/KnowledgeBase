@@ -2,7 +2,7 @@
 function getIndex(req, res) {
   res.render("layouts/index", {
     layout: "layouts/index",
-    body: "<h1>Welcome to my website!</h1>",
+    body: "",
   });
 }
 function getAbout(req, res) {
