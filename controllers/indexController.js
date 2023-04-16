@@ -1,4 +1,4 @@
-// Fråga anton varför den kräven body: ?
+// Fråga anton varför den kräver body: ?
 function getIndex(req, res) {
   res.render("layouts/index", {
     layout: "layouts/index",

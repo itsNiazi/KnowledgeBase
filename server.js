@@ -37,9 +37,16 @@ app.use(passport.session());
 
 const indexRoute = require("./routes/index");
 const usersRoute = require("./routes/users");
+const notesRoute = require("./routes/notes");
 
 app.use("/", indexRoute);
 app.use("/users", usersRoute);
+app.use("/users/dashboard", notesRoute);
+
+// 404 (Change to render a nice page)
+app.get("*", (req, res) => {
+  res.status(404).send("404 Page Not Found");
+});
 
 // Simple code that tests Database connection
 (async () => {
