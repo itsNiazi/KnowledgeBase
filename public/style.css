@@ -20,4 +20,9 @@ img {
 
 body {
   background-color: purple;
+  color: rgb(18, 14, 14);
+}
+
+a {
+  color: white;
 }

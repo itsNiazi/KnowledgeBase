@@ -35,10 +35,10 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-const mainRoute = require("./routes/main");
+const indexRoute = require("./routes/index");
 const usersRoute = require("./routes/users");
 
-app.use("/", mainRoute);
+app.use("/", indexRoute);
 app.use("/users", usersRoute);
 
 // Simple code that tests Database connection
