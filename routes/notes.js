@@ -5,9 +5,9 @@ const {
   checkAuthenticated,
   checkNotAuthenticated,
 } = require("../controllers/authController");
-const pool = require("../models/db");
 
-router.get("/add", checkNotAuthenticated, notesController.addNote);
+router.get("/add", checkNotAuthenticated, notesController.getNote);
 router.post("/add", notesController.postNote);
 
+router.get("/read", checkNotAuthenticated, notesController.getUserNote);
 module.exports = router;

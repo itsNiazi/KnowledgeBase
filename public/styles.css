@@ -29,3 +29,6 @@ p {
 body {
   background-color: pink;
 }
+legend {
+  color: white;
+}
