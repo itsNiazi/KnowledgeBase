@@ -6,8 +6,8 @@ const {
   checkNotAuthenticated,
 } = require("../controllers/authController");
 
+router.get("/", checkNotAuthenticated, notesController.getUserNote);
 router.get("/add", checkNotAuthenticated, notesController.getNote);
 router.post("/add", notesController.postNote);
 
-router.get("/read", checkNotAuthenticated, notesController.getUserNote);
 module.exports = router;

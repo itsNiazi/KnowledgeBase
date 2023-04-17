@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <%- include('../partials/header') %> <%- body %>
-    <h1>This is a test of the the view engine and layouts <%= 1 + 1 %></h1>
-    <h1 id="myHeading">This is a test of client side code</h1>
-    <a href="/users/login">Login</a>
-    <%- include('../partials/footer') %>
-    <script src="client.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/indexStyle.css" />
+  <title>KnowledgeBase</title>
+</head>
+
+<body>
+  <%- include('../partials/header') %> <%- body %>
+      <a href="/users/login">Login</a>
+      <%- include('../partials/footer') %>
+        <script src="client.js"></script>
+</body>
+
 </html>

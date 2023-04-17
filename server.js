@@ -41,7 +41,7 @@ const notesRoute = require("./routes/notes");
 
 app.use("/", indexRoute);
 app.use("/users", usersRoute);
-app.use("/users/dashboard", notesRoute);
+app.use("/users/dashboard/notes", notesRoute);
 
 // 404 (Change to render a nice page)
 app.get("*", (req, res) => {
