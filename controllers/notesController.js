@@ -15,7 +15,7 @@ async function postNote(req, res) {
       "INSERT INTO notes (user_id, title, content, category, created, updated) VALUES ($1, $2, $3, $4, $5, $6)",
       [userId, title, content, category, created, updated]
     );
-    res.redirect("/users/dashboard/add");
+    res.redirect("/users/dashboard/notes/add");
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -23,13 +23,18 @@ async function postNote(req, res) {
 }
 
 async function getUserNote(req, res) {
+  function truncateText(text, limit) {
+    const truncated = text.substring(0, limit);
+    return text.length > limit ? truncated + "..." : truncated;
+  }
   try {
     const userId = req.user.id;
     const notes = await pool.query(
       `SELECT * FROM notes WHERE user_id = $1 ORDER BY id ASC`,
       [userId]
     );
-    console.log(notes);
+    // res.render("pages/readNotes", { notes });
+    res.render("pages/readNotes", { notes: notes.rows, truncateText });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
