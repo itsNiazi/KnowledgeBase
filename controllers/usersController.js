@@ -49,7 +49,7 @@ async function postRegister(req, res) {
         }
         console.log(results.rows);
         if (results.rows.length > 0) {
-          errors.push({ message: "Username already registered" });
+          errors.push({ message: "Username already exists" });
           res.render("pages/register", { errors });
         } else {
           pool.query(
