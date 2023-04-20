@@ -1,7 +1,10 @@
 const pool = require("../models/db");
 
+// function getNote(req, res) {
+//   res.render("pages/notes", { layout: "layouts/index" });
+// }
 function getNote(req, res) {
-  res.render("pages/notes", { layout: "layouts/index" });
+  res.render("pages/notes");
 }
 
 async function postNote(req, res) {
@@ -15,7 +18,7 @@ async function postNote(req, res) {
       "INSERT INTO notes (user_id, title, content, category, created, updated) VALUES ($1, $2, $3, $4, $5, $6)",
       [userId, title, content, category, created, updated]
     );
-    res.redirect("/users/dashboard/notes/add");
+    res.redirect("/users/dashboard/notes");
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -33,7 +36,6 @@ async function getUserNote(req, res) {
       `SELECT * FROM notes WHERE user_id = $1 ORDER BY id ASC`,
       [userId]
     );
-    // res.render("pages/readNotes", { notes });
     res.render("pages/readNotes", { notes: notes.rows, truncateText });
   } catch (err) {
     console.error(err);
