@@ -43,4 +43,27 @@ async function getUserNote(req, res) {
   }
 }
 
-module.exports = { getNote, postNote, getUserNote };
+async function getViewNote(req, res) {
+  try {
+    const noteId = req.params.id;
+    const note = await pool.query("SELECT * FROM notes WHERE id = $1", [
+      noteId,
+    ]);
+    res.render("pages/viewNotes", { note: note.rows[0] });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+}
+async function deleteNote(req, res) {
+  try {
+    const noteId = req.params.id;
+    console.log(noteId);
+    await pool.query("DELETE FROM notes WHERE id = $1", [noteId]);
+    res.redirect("pages/notes");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+}
+module.exports = { getNote, postNote, getUserNote, getViewNote, deleteNote };
