@@ -46,9 +46,14 @@ async function getUserNote(req, res) {
 async function getViewNote(req, res) {
   try {
     const noteId = req.params.id;
-    const note = await pool.query("SELECT * FROM notes WHERE id = $1", [
-      noteId,
-    ]);
+    const userId = req.user.id;
+    const note = await pool.query(
+      "SELECT * FROM notes WHERE id = $1 AND user_id = $2",
+      [noteId, userId]
+    );
+    if (note.rowCount === 0) {
+      return res.status(403).send("Forbidden");
+    }
     res.render("pages/viewNotes", { note: note.rows[0] });
   } catch (err) {
     console.error(err);
@@ -58,12 +63,25 @@ async function getViewNote(req, res) {
 async function deleteNote(req, res) {
   try {
     const noteId = req.params.id;
-    console.log(noteId);
     await pool.query("DELETE FROM notes WHERE id = $1", [noteId]);
-    res.redirect("pages/notes");
+    res.redirect("/users/dashboard/notes");
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
 }
+
+// async function updateNote(req, res) {
+//   try {
+//     const noteId = req.params.id;
+//     const updated = new Date();
+//     const { title, category, content } = req.body;
+//     await pool.query("UPDATE notes SET() WHERE id = $1 AND user_id = $2 ", [
+//       noteId,
+//     ]);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Server Error");
+//   }
+// }
 module.exports = { getNote, postNote, getUserNote, getViewNote, deleteNote };
