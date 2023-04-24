@@ -52,7 +52,7 @@ async function getViewNote(req, res) {
       [noteId, userId]
     );
     if (note.rowCount === 0) {
-      return res.status(403).send("Forbidden");
+      return res.status(403).send("You shall not pass!");
     }
     res.render("pages/viewNotes", { note: note.rows[0] });
   } catch (err) {
@@ -71,17 +71,44 @@ async function deleteNote(req, res) {
   }
 }
 
-// async function updateNote(req, res) {
-//   try {
-//     const noteId = req.params.id;
-//     const updated = new Date();
-//     const { title, category, content } = req.body;
-//     await pool.query("UPDATE notes SET() WHERE id = $1 AND user_id = $2 ", [
-//       noteId,
-//     ]);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send("Server Error");
-//   }
-// }
-module.exports = { getNote, postNote, getUserNote, getViewNote, deleteNote };
+async function editNote(req, res) {
+  try {
+    const noteId = req.params.id;
+
+    const result = await pool.query("SELECT * FROM notes WHERE id = $1", [
+      noteId,
+    ]);
+
+    const note = result.rows[0];
+
+    res.render("pages/editNote", { note });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+}
+
+async function updateNote(req, res) {
+  try {
+    const noteId = req.params.id;
+    const updated = new Date();
+    const { title, category, content } = req.body;
+    await pool.query(
+      "UPDATE notes SET title = $1, content = $2, category = $3, updated = $4 WHERE id = $5 ",
+      [title, content, category, updated, noteId]
+    );
+    res.redirect(`/users/dashboard/notes/${noteId}`);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+}
+module.exports = {
+  getNote,
+  postNote,
+  getUserNote,
+  getViewNote,
+  deleteNote,
+  editNote,
+  updateNote,
+};

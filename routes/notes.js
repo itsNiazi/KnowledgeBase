@@ -11,5 +11,7 @@ router.get("/add", checkNotAuthenticated, notesController.getNote);
 router.post("/add", notesController.postNote);
 router.get("/:id", checkNotAuthenticated, notesController.getViewNote);
 router.post("/:id", checkNotAuthenticated, notesController.deleteNote);
+router.get("/:id/edit", checkNotAuthenticated, notesController.editNote);
+router.post("/:id/edit", notesController.updateNote);
 
 module.exports = router;

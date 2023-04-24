@@ -7,7 +7,7 @@
             <p>
                 <%= note.content %>
             </p>
-            <a href="/notes/<%= note.id %>/edit" class="btn btn-secondary">Edit</a>
+            <a href="/users/dashboard/notes/<%= note.id %>/edit" class="btn btn-secondary">Edit</a>
             <form method="POST" action="/users/dashboard/notes/<%= note.id %>">
                 <input type="submit" value="delete">
             </form>
