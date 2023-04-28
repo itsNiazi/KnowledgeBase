@@ -38,10 +38,12 @@ app.use(passport.session());
 const indexRoute = require("./routes/index");
 const usersRoute = require("./routes/users");
 const notesRoute = require("./routes/notes");
+const rewardsRoute = require("./routes/rewards");
 
 app.use("/", indexRoute);
 app.use("/users", usersRoute);
 app.use("/users/dashboard/notes", notesRoute);
+app.use("/users/dashboard/achievements", rewardsRoute);
 
 // 404 (Change to render a nice page)
 app.get("*", (req, res) => {
