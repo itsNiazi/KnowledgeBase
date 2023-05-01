@@ -29,7 +29,7 @@ async function postRegister(req, res) {
     errors.push({ message: "Please enter all fields" });
   }
   if (password.length < 6) {
-    errors.push({ message: "Password should be atleast 6 characters" });
+    errors.push({ message: "Password should be at least 6 characters" });
   }
   if (password != password2) {
     errors.push({ message: "Passwords do not match" });
@@ -49,7 +49,7 @@ async function postRegister(req, res) {
         }
         console.log(results.rows);
         if (results.rows.length > 0) {
-          errors.push({ message: "Username already registered" });
+          errors.push({ message: "Username already exists" });
           res.render("pages/register", { errors });
         } else {
           pool.query(

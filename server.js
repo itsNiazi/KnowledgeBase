@@ -1,7 +1,6 @@
 // Imports dependencies
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-// const bcrypt = require("bcrypt");
 const session = require("express-session");
 const flash = require("express-flash");
 const passport = require("passport");
@@ -12,7 +11,7 @@ const initializePassport = require("./config/passportConfig");
 initializePassport(passport);
 
 const app = express();
-const port = 3000;
+const port = 3000 || process.env.PORT;
 
 // Static Files
 app.use(express.static("public"));
@@ -36,12 +35,17 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+const indexRoute = require("./routes/index");
 const usersRoute = require("./routes/users");
-app.use("/users", usersRoute);
+const notesRoute = require("./routes/notes");
 
-// GET Routes
-app.get("/", (req, res) => {
-  res.render("pages/");
+app.use("/", indexRoute);
+app.use("/users", usersRoute);
+app.use("/users/dashboard/notes", notesRoute);
+
+// 404 (Change to render a nice page)
+app.get("*", (req, res) => {
+  res.status(404).send("404 Page Not Found");
 });
 
 // Simple code that tests Database connection

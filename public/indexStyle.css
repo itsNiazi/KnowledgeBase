@@ -18,10 +18,14 @@ img {
   }
 }
 
-.space {
-  display: block;
+body {
+  background-color: purple;
+  color: rgb(18, 14, 14);
 }
 
-p {
-  color: red;
+a {
+  color: white;
+}
+legend {
+  color: white;
 }
