@@ -13,7 +13,13 @@
 <body>
   <%- include('../partials/header') %>
     <%- body %>
+      <form action="/search" method="get">
+        <input type="text" name="query" placeholder="Search notes...">
+        <button type="submit">Search</button>
+      </form>
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+
       <!-- <script src="client.js"></script> -->
 </body>
 

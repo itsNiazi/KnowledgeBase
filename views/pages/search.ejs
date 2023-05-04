@@ -1,0 +1,18 @@
+<h1>Search Results</h1>
+
+<% if (results.length> 0) { %>
+    <ul>
+        <% results.forEach(function(result) { %>
+            <li>
+                <h2>
+                    <!--Why not result.title?-->
+                    <%= result.item.title %>
+                </h2>
+                <p>Score: <%= result.score %>
+                </p>
+            </li>
+            <% }); %>
+    </ul>
+    <% } else { %>
+        <p>No results found.</p>
+        <% } %>
