@@ -27,6 +27,9 @@ img {
   color: white;
 }
 
+body.darkmode a {
+  color: white;
+}
 body {
   font-family: "Poppins", sans-serif;
 }
