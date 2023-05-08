@@ -36,7 +36,10 @@ async function getUserNote(req, res) {
       `SELECT * FROM notes WHERE user_id = $1 ORDER BY id ASC`,
       [userId]
     );
-    res.render("pages/readNotes", { notes: notes.rows, truncateText });
+    res.render("pages/readNotes", {
+      notes: notes.rows,
+      truncateText,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
