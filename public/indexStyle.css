@@ -18,11 +18,31 @@ img {
   }
 }
 
+:root {
+  --clr-dark: black;
+  --clr-light: white;
+}
+.darkmode {
+  background-color: var(--clr-dark);
+  color: white;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
 section {
   display: grid;
   place-items: center;
   align-content: center;
   min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 .hidden {
