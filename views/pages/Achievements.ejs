@@ -1,1 +1,18 @@
+<<<<<<< Updated upstream
 <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, iusto.</h1>
+=======
+<body>
+    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, iusto.</h1>
+    <br>
+    <h1>Achievements</h1>
+    <div id="content">
+      <% achievements.forEach(achievement=> { %>
+        <figure class="achievements">
+          <img class="achievement-image achievement-image<%= achievement.id %>" src="/<%= achievement.image_url %>"
+            style="opacity: <%= achievement.opacity %>" title="<%= achievement.description %>">
+            <figcaption><%= achievement.name %></figcaption>
+          </figure>
+        <% }); %>
+    </div>
+  </body>
+>>>>>>> Stashed changes
