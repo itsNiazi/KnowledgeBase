@@ -3,11 +3,14 @@ const passport = require("passport");
 const pool = require("../models/db");
 
 function getRegister(req, res) {
-  res.render("pages/register");
+  res.render("pages/register", { layout: "layouts/index" });
 }
 
 function getLogin(req, res) {
-  res.render("pages/login", { message: req.flash("message") });
+  res.render("pages/login", {
+    layout: "layouts/index",
+    message: req.flash("message"),
+  });
 }
 
 function getDashboard(req, res) {
