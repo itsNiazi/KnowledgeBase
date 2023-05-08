@@ -61,3 +61,13 @@ section {
   filter: blur(0);
   transform: translateX(0);
 }
+
+header {
+  max-width: 1400px;
+  width: 90%;
+  margin-inline: auto;
+}
+
+footer {
+  text-align: center;
+}
