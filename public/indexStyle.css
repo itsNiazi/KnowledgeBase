@@ -30,8 +30,9 @@ img {
 body.darkmode a {
   color: white;
 }
+
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto Mono", monospace;
 }
 
 section {

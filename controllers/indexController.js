@@ -7,7 +7,7 @@
 // }
 
 function getIndex(req, res) {
-  res.render("pages/home");
+  res.render("pages/home", { layout: "layouts/index" });
 }
 
 function getAbout(req, res) {
