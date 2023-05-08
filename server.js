@@ -44,29 +44,6 @@ app.use("/", indexRoute);
 app.use("/users", usersRoute);
 app.use("/users/dashboard/notes", notesRoute);
 
-app.get("/search", async (req, res) => {
-  //checkAuthenticated
-  try {
-    const result = await pool.query(
-      //Query selects all titles, should I specify according to the search input?
-      "SELECT title FROM notes WHERE user_id = $1", //Add limits?
-      [req.user.id]
-    );
-    // const notes = result.rows;
-    const options = {
-      keys: ["title"],
-      includeScore: true,
-      threshold: 0.4,
-    };
-    const fuse = new Fuse(result.rows, options);
-    const searchResult = fuse.search(req.query.query);
-    res.render("pages/search", { results: searchResult }); //Where is this "results:" coming from?
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
-  }
-});
-
 // 404 (Change to render a nice page)
 app.get("*", (req, res) => {
   res.status(404).send("404 Page Not Found");
