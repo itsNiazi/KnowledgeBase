@@ -18,14 +18,22 @@ img {
   }
 }
 
-body {
-  background-color: purple;
-  color: rgb(18, 14, 14);
+section {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
 }
 
-a {
-  color: white;
+.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s;
 }
-legend {
-  color: white;
+
+.display {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
 }
