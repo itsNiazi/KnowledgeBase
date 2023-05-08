@@ -1,10 +1,15 @@
 // Fråga anton varför den kräver body: ?
+// function getIndex(req, res) {
+//   res.render("layouts/index", {
+//     layout: "layouts/index",
+//     body: "",
+//   });
+// }
+
 function getIndex(req, res) {
-  res.render("layouts/index", {
-    layout: "layouts/index",
-    body: "",
-  });
+  res.render("pages/home");
 }
+
 function getAbout(req, res) {
   res.render("pages/about", { layout: "layouts/index" });
 }
