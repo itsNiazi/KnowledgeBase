@@ -121,3 +121,36 @@ form button[type="submit"]:hover {
 header {
   padding: 10px 0;
 }
+
+.card-form {
+  background: rgba(255, 255, 255, 0.436);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  padding: 2rem;
+  height: 300px;
+  width: 450px;
+}
+
+fieldset {
+  border: 0;
+}
+
+input[name="username"],
+input[type="password"] {
+  display: block;
+  margin-bottom: 10px;
+  outline: none;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.container-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
