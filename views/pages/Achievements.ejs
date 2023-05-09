@@ -1,0 +1,24 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/achievementsStyle.css" />
+    <title>KnowledgeBase</title>
+</head>
+
+<body>
+    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, iusto.</h1>
+    <br>
+    <h1>Achievements</h1>
+    <div class="allAchievements">
+        <% achievements.forEach(achievement=> { %>
+            <figure id="achievements">
+                <img class="achievement-image <%= achievement.className %>" src="/images/<%= achievement.image_url %>"
+                    title="<%= achievement.description %>">
+                <figcaption id="achievementName">
+                    <%= achievement.name %>
+                </figcaption>
+            </figure>
+            <% }); %>
+    </div>
+</body>
