@@ -26,6 +26,12 @@ img {
   background-color: var(--clr-dark);
   color: white;
 }
+.dark-mode-toggle {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
 
 body.darkmode a {
   color: white;
@@ -70,4 +76,48 @@ header {
 
 footer {
   text-align: center;
+}
+
+body.darkmode form input[name="query"] {
+  width: 400px;
+  height: 30px;
+  padding: 5px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: rgb(78, 78, 78);
+  color: white;
+}
+form input[name="query"] {
+  width: 400px;
+  height: 30px;
+  padding: 5px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: rgb(219, 218, 218);
+}
+form input[name="query"]:focus {
+  outline: none;
+}
+
+form button[type="submit"] {
+  height: 30px;
+  width: 70px;
+  background-color: rgb(117, 16, 7);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form button[type="submit"]:hover {
+  background-color: rgb(100, 0, 0);
+}
+
+header {
+  padding: 10px 0;
 }

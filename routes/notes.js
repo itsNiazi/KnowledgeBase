@@ -5,7 +5,6 @@ const {
   checkAuthenticated,
   checkNotAuthenticated,
 } = require("../controllers/authController");
-const Fuse = require("fuse.js");
 
 router.get("/", checkNotAuthenticated, notesController.getUserNote);
 router.get("/add", checkNotAuthenticated, notesController.getNote);

@@ -43,7 +43,7 @@ app.use("/", indexRoute);
 app.use("/users", usersRoute);
 app.use("/users/dashboard/notes", notesRoute);
 
-// 404 (Change to render a nice page)
+// 404 Page Not Found
 app.get("*", (req, res) => {
   res.status(404).send("404 Page Not Found");
 });

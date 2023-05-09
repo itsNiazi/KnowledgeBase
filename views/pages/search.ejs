@@ -1,16 +1,14 @@
-<h1>Search Results</h1>
-
-<% if (results.length> 0) { %>
-    <ul>
-        <% results.forEach(function(result) { %>
-            <li>
-                <h2>
-                    <!--Why not result.title?-->
-                    <%= result.item.title %>
-                </h2>
-            </li>
-            <% }); %>
-    </ul>
-    <% } else { %>
-        <p>No results found.</p>
-        <% } %>
+<div class="container">
+    <h1>Search Results</h1>
+    <% if (results.length> 0) { %>
+        <ul>
+            <% results.forEach((note)=> { %>
+                <li><a href="<%= note.link %>">
+                        <%= note.title %>
+                    </a></li>
+                <% }); %>
+        </ul>
+        <% } else { %>
+            <p>No results found.</p>
+            <% } %>
+</div>

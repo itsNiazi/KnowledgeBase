@@ -1,21 +1,22 @@
-<a href="/users/dashboard/notes/add">Add note</a>
-<a href="/users/logout">Logout</a>
 <div class="container">
-    <div class="row">
-        <% notes.forEach(function(note) { %>
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <%= note.title %>
-                        </h5>
-                        <p class="card-text">
-                            <%= truncateText(note.content, 50) %>
-                        </p>
-                        <a href="notes/<%= note.id %>" class="btn btn-primary">View</a>
+    <a href="/users/dashboard/notes/add">Add note</a>
+    <div class="container">
+        <div class="row">
+            <% notes.forEach(function(note) { %>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= note.title %>
+                            </h5>
+                            <p class="card-text">
+                                <%= truncateText(note.content, 50) %>
+                            </p>
+                            <a href="notes/<%= note.id %>" class="btn btn-primary">View</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <% }); %>
+                <% }); %>
+        </div>
     </div>
 </div>

@@ -12,11 +12,7 @@
 </head>
 
 <body>
-  <%- include('../partials/header') %> <%- body %>
-      <form action="/users/dashboard/notes/search" method="get">
-        <input type="text" name="query" placeholder="Search notes..." />
-        <button type="submit">Search</button>
-      </form>
+  <%- include('../partials/dashboardHeader') %> <%- body %>
       <script src="/client.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 </body>
