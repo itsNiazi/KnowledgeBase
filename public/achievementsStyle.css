@@ -1,0 +1,26 @@
+.allAchievements {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+#achievements {
+  width: 12%;
+  margin: auto;
+  text-align: center;
+}
+
+.achievement-image {
+  background-color: #4b0d10;
+  border-radius: 20%;
+}
+
+.achievement-image-opaque {
+  opacity: 1;
+}
+
+.achievement-image-transparent {
+  opacity: 0.4;
+}
