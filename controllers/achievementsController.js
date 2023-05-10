@@ -57,11 +57,14 @@ async function getUserAchievements(req, res) {
 
     const currentData = new Date();
     const { rows } = await pool.query(
-      "SELECT dateJoined FROM users WHERE id = $1", [userId]
+      "SELECT dateJoined FROM users WHERE id = $1",
+      [userId]
     );
     const dateJoined = new Date(rows[0].datejoined);
-    const diffDays = Math.floor((currentData - dateJoined) / (1000 * 60 * 60 * 24));
-
+    const diffDays = Math.floor(
+      (currentData - dateJoined) / (1000 * 60 * 60 * 24)
+    );
+    console.log(diffDays);
     if (diffDays >= 1) {
       await pool.query(
         "INSERT into user_achievements (user_id, achievement_id) SELECT $1, 5 WHERE NOT EXISTS(SELECT 5 FROM user_achievements WHERE user_id = $1 AND achievement_id = 5)",

@@ -25,6 +25,7 @@ function getLogout(req, res) {
 
 async function postRegister(req, res) {
   let { username, password, password2 } = req.body;
+  const dateJoined = new Date();
   console.log({ username, password, password2 });
 
   let errors = [];
@@ -56,10 +57,10 @@ async function postRegister(req, res) {
           res.render("pages/register", { errors, layout: "layouts/index" });
         } else {
           pool.query(
-            `INSERT INTO users (username, password)
-            VALUES ($1, $2)
+            `INSERT INTO users (username, password, datejoined)
+            VALUES ($1, $2, $3)
             RETURNING id, password`,
-            [username, hashedPassword],
+            [username, hashedPassword, dateJoined],
             (err, results) => {
               if (err) {
                 throw err;
