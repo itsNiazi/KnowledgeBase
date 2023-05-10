@@ -16,6 +16,10 @@ async function postNote(req, res) {
       "INSERT INTO notes (user_id, title, content, category, created, updated) VALUES ($1, $2, $3, $4, $5, $6)",
       [userId, title, content, category, created, updated]
     );
+    await pool.query(
+      "UPDATE users SET amount = amount + 1 WHERE id = $1",
+      [userId]
+    );
     res.redirect("/users/dashboard/notes");
   } catch (err) {
     console.error(err);

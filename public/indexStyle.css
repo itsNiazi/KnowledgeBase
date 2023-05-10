@@ -135,6 +135,10 @@ header {
   width: 450px;
 }
 
+.card{
+  color: black;
+}
+
 fieldset {
   border: 0;
 }
