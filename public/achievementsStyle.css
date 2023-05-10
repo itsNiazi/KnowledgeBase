@@ -1,26 +1,43 @@
 .allAchievements {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-  
-  #achievements {
-    width: 12%;
-    margin: auto;
-    text-align: center;
-  }
-  
-  .achievement-image {
-    background-color: #4b0d10;
-    border-radius: 20%;
-  }
-  
-  .achievement-image-opaque {
-    opacity: 1;
-  }
-  
-  .achievement-image-transparent {
-    opacity: 0.4;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  text-align: center;
+}
+
+#achievements {
+  width: 15%;
+  margin: 3%;
+  position: relative;
+}
+
+.achievement-image {
+  background-color: #4b0d10;
+  border-radius: 20%;
+  position: relative;
+}
+
+.achievement-image img {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.achievement-image-opaque {
+  opacity: 1;
+}
+
+.achievement-image-transparent {
+  opacity: 0.4;
+}
+
+#achievementName {
+  position: absolute;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+}

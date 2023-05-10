@@ -54,6 +54,42 @@ async function getUserAchievements(req, res) {
     });
 
     console.log(achievements);
+
+    const currentData = new Date();
+    const { rows } = await pool.query(
+      "SELECT dateJoined FROM users WHERE id = $1", [userId]
+    );
+    const dateJoined = new Date(rows[0].datejoined);
+    const diffDays = Math.floor((currentData - dateJoined) / (1000 * 60 * 60 * 24));
+
+    if (diffDays >= 1) {
+      await pool.query(
+        "INSERT into user_achievements (user_id, achievement_id) SELECT $1, 5 WHERE NOT EXISTS(SELECT 5 FROM user_achievements WHERE user_id = $1 AND achievement_id = 5)",
+        [userId]
+      );
+    }
+
+    if (diffDays >= 7) {
+      await pool.query(
+        "INSERT into user_achievements (user_id, achievement_id) SELECT $1, 6 WHERE NOT EXISTS(SELECT 6 FROM user_achievements WHERE user_id = $1 AND achievement_id = 6)",
+        [userId]
+      );
+    }
+
+    if (diffDays >= 30) {
+      await pool.query(
+        "INSERT into user_achievements (user_id, achievement_id) SELECT $1, 7 WHERE NOT EXISTS(SELECT 7 FROM user_achievements WHERE user_id = $1 AND achievement_id = 7)",
+        [userId]
+      );
+    }
+
+    if (diffDays >= 90) {
+      await pool.query(
+        "INSERT into user_achievements (user_id, achievement_id) SELECT $1, 8 WHERE NOT EXISTS(SELECT 8 FROM user_achievements WHERE user_id = $1 AND achievement_id = 8)",
+        [userId]
+      );
+    }
+
     res.render("pages/achievements", { achievements });
   } catch (err) {
     console.error(err);
