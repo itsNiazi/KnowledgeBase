@@ -6,20 +6,17 @@
     <title>KnowledgeBase</title>
 </head>
 
-<div class="container">
-
-    <body>
-        <h1>Achievements</h1>
-        <div class="allAchievements">
-            <% achievements.forEach(achievement=> { %>
-                <figure id="achievements">
-                    <img class="achievement-image <%= achievement.className %>"
-                        src="/images/<%= achievement.image_url %>" title="<%= achievement.description %>">
-                    <figcaption id="achievementName">
-                        <%= achievement.name %>
-                    </figcaption>
-                </figure>
-                <% }); %>
-        </div>
-    </body>
-</div>
+<body>
+    <h1>Achievements</h1>
+    <div class="allAchievements">
+        <% achievements.forEach(achievement=> { %>
+            <figure id="achievements">
+                <img class="achievement-image <%= achievement.className %>" src="/images/<%= achievement.image_url %>"
+                    title="<%= achievement.description %>">
+                <figcaption id="achievementName">
+                    <%= achievement.name %>
+                </figcaption>
+            </figure>
+            <% }); %>
+    </div>
+</body>

@@ -4,6 +4,7 @@
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
+  margin: 0%;
   text-align: center;
 }
 
@@ -38,6 +39,5 @@
   position: absolute;
   width: 100%;
   padding: 10px;
-  font-size: 14px;
   text-align: center;
 }
