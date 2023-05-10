@@ -11,15 +11,13 @@ async function postNote(req, res) {
     const userId = req.user.id;
     const created = new Date();
     const updated = created;
-    console.log(title, category, content, userId);
     await pool.query(
       "INSERT INTO notes (user_id, title, content, category, created, updated) VALUES ($1, $2, $3, $4, $5, $6)",
       [userId, title, content, category, created, updated]
     );
-    await pool.query(
-      "UPDATE users SET amount = amount + 1 WHERE id = $1",
-      [userId]
-    );
+    await pool.query("UPDATE users SET amount = amount + 1 WHERE id = $1", [
+      userId,
+    ]);
     res.redirect("/users/dashboard/notes");
   } catch (err) {
     console.error(err);
@@ -35,7 +33,7 @@ async function getUserNote(req, res) {
   try {
     const userId = req.user.id;
     const notes = await pool.query(
-      `SELECT * FROM notes WHERE user_id = $1 ORDER BY id ASC`,
+      `SELECT * FROM notes WHERE user_id = $1 ORDER BY id DESC`,
       [userId]
     );
     res.render("pages/readNotes", {
@@ -79,13 +77,10 @@ async function deleteNote(req, res) {
 async function editNote(req, res) {
   try {
     const noteId = req.params.id;
-
     const result = await pool.query("SELECT * FROM notes WHERE id = $1", [
       noteId,
     ]);
-
     const note = result.rows[0];
-
     res.render("pages/editNote", { note });
   } catch (err) {
     console.error(err);

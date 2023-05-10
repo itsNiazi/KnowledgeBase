@@ -1,17 +1,16 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>
-                <%= note.title %>
-            </h1>
-            <p>
-                <%= note.content %>
-            </p>
-            <a href="/users/dashboard/notes/<%= note.id %>/edit" class="btn btn-secondary">Edit</a>
-            <form method="POST" action="/users/dashboard/notes/<%= note.id %>">
-                <input type="submit" value="delete">
-            </form>
-
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1><%= note.title %></h1>
+      <p><%= note.content %></p>
+      <a
+        href="/users/dashboard/notes/<%= note.id %>/edit"
+        class="btn btn-secondary"
+        >Edit</a
+      >
+      <form method="POST" action="/users/dashboard/notes/<%= note.id %>">
+        <input type="submit" value="delete" />
+      </form>
     </div>
+  </div>
 </div>

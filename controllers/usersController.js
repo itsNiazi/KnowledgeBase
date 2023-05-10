@@ -26,7 +26,6 @@ function getLogout(req, res) {
 async function postRegister(req, res) {
   let { username, password, password2 } = req.body;
   const dateJoined = new Date();
-  console.log({ username, password, password2 });
 
   let errors = [];
   if (!username || !password || !password2) {
@@ -42,7 +41,6 @@ async function postRegister(req, res) {
     res.render("pages/register", { errors, layout: "layouts/index" });
   } else {
     let hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
 
     pool.query(
       `SELECT * FROM users WHERE username = $1`,
@@ -51,7 +49,6 @@ async function postRegister(req, res) {
         if (err) {
           throw err;
         }
-        console.log(results.rows);
         if (results.rows.length > 0) {
           errors.push({ message: "Username already exists" });
           res.render("pages/register", { errors, layout: "layouts/index" });
@@ -65,7 +62,6 @@ async function postRegister(req, res) {
               if (err) {
                 throw err;
               }
-              console.log(results.rows);
               res.redirect("/users/login");
             }
           );
