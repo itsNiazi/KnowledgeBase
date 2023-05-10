@@ -19,7 +19,7 @@ function getDashboard(req, res) {
 
 function getLogout(req, res) {
   req.logOut(() => {
-    res.redirect("/users/login");
+    res.redirect("/");
   });
 }
 
@@ -38,7 +38,7 @@ async function postRegister(req, res) {
     errors.push({ message: "Passwords do not match" });
   }
   if (errors.length > 0) {
-    res.render("pages/register", { errors });
+    res.render("pages/register", { errors, layout: "layouts/index" });
   } else {
     let hashedPassword = await bcrypt.hash(password, 10);
     console.log(hashedPassword);
@@ -53,7 +53,7 @@ async function postRegister(req, res) {
         console.log(results.rows);
         if (results.rows.length > 0) {
           errors.push({ message: "Username already exists" });
-          res.render("pages/register", { errors });
+          res.render("pages/register", { errors, layout: "layouts/index" });
         } else {
           pool.query(
             `INSERT INTO users (username, password)

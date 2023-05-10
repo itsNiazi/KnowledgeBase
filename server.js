@@ -40,12 +40,10 @@ const usersRoute = require("./routes/users");
 const notesRoute = require("./routes/notes");
 const rewardsRoute = require("./routes/achievements");
 
-
 app.use("/", indexRoute);
 app.use("/users", usersRoute);
 app.use("/users/dashboard/notes", notesRoute);
 app.use("/users/achievements", rewardsRoute);
-
 
 // 404 Page Not Found
 app.get("*", (req, res) => {
