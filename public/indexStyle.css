@@ -202,3 +202,25 @@ input[type="password"] {
   padding: 10px;
   text-align: center;
 }
+
+/* Live search */
+#searchInput {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+#searchResults {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+#searchResults li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+#searchResults li:hover {
+  background-color: lightgray;
+}

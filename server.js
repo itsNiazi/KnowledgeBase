@@ -4,6 +4,7 @@ const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
 const flash = require("express-flash");
 const passport = require("passport");
+const Fuse = require("fuse.js");
 
 // Imports modules
 const pool = require("./models/db");
@@ -44,6 +45,44 @@ app.use("/", indexRoute);
 app.use("/users", usersRoute);
 app.use("/users/dashboard/notes", notesRoute);
 app.use("/users/achievements", rewardsRoute);
+
+app.get("/search", (req, res) => {
+  const searchTerm = req.query.term;
+  const userId = req.user.id;
+
+  pool.query(
+    `SELECT * FROM notes WHERE user_id = $1 AND title ILIKE $2 ORDER BY title LIMIT 5`,
+    [userId, `%${searchTerm}%`],
+    (error, result) => {
+      if (error) {
+        console.error("Error executing search query", error);
+        res.sendStatus(500);
+      } else {
+        const notes = result.rows;
+        console.log(notes);
+        res.send(notes);
+      }
+    }
+  );
+});
+
+// app.get("/search", (req, res) => {
+//   const userId = req.user.id;
+
+//   pool.query(
+//     `SELECT * FROM notes WHERE user_id = $1 ORDER BY title`,
+//     [userId],
+//     (error, result) => {
+//       if (error) {
+//         console.error("Error executing search query", error);
+//         res.sendStatus(500);
+//       } else {
+//         const notes = result.rows;
+//         res.send(notes);
+//       }
+//     }
+//   );
+// });
 
 // 404 Page Not Found
 app.get("*", (req, res) => {

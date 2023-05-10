@@ -1,4 +1,99 @@
 <div class="container">
-    <h2>Hi, <%= user.charAt(0).toUpperCase() + user.slice(1)%>!
-    </h2>
+  <h2>Hi, <%= user.charAt(0).toUpperCase() + user.slice(1)%>!</h2>
 </div>
+
+<h1>Live Search Autocomplete</h1>
+<input id="searchInput" type="text" placeholder="Search for notes" />
+
+<ul id="searchResults"></ul>
+
+<script src="https://unpkg.com/fuse.js"></script>
+
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const searchResults = document.getElementById("searchResults");
+  let debounceTimeout;
+
+  searchInput.addEventListener("input", function () {
+    clearTimeout(debounceTimeout);
+
+    debounceTimeout = setTimeout(() => {
+      const searchTerm = this.value;
+
+      fetch(`/search?term=${searchTerm}`)
+        .then((response) => response.json())
+        .then((notes) => {
+          searchResults.innerHTML = "";
+
+          const fuse = new Fuse(notes, {
+            keys: ["title"],
+            includeMatches: true,
+            treshold: 0.3,
+            useExtendedSearch: true,
+          });
+
+          const results = fuse.search(searchTerm);
+          console.log(results);
+          results.forEach((result) => {
+            const note = result.item;
+            const title = note.title;
+
+            const li = document.createElement("li");
+            li.textContent = title;
+
+            searchResults.appendChild(li);
+          });
+        })
+        .catch((error) => {
+          console.error("Error searching notes", error);
+        });
+    }, 200);
+  });
+</script>
+
+<!-- <script>
+  const searchInput = document.getElementById("searchInput");
+  const searchResults = document.getElementById("searchResults");
+  let debounceTimeout;
+  let notes = [];
+
+  searchInput.addEventListener("input", function () {
+    clearTimeout(debounceTimeout);
+
+    debounceTimeout = setTimeout(() => {
+      const searchTerm = this.value;
+
+      const fuse = new Fuse(notes, {
+        keys: ["title"],
+        includeMatches: true,
+        threshold: 0.4,
+      });
+
+      const results = fuse.search(searchTerm).map((result) => result.item);
+
+      renderResults(results);
+    }, 300);
+  });
+
+  fetch("/search")
+    .then((response) => response.json())
+    .then((data) => {
+      notes = data;
+    })
+    .catch((error) => {
+      console.error("Error fetching notes", error);
+    });
+
+  function renderResults(results) {
+    searchResults.innerHTML = "";
+
+    results.forEach((note) => {
+      const title = note.title;
+
+      const li = document.createElement("li");
+      li.textContent = title;
+
+      searchResults.appendChild(li);
+    });
+  }
+</script> -->
