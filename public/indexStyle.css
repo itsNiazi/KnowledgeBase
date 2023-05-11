@@ -21,6 +21,12 @@ img {
 :root {
   --clr-dark: black;
   --clr-light: white;
+  --clr-orange: rgb(218, 170, 81);
+  --clr-green: rgb(117, 178, 117);
+  --clr-blue:rgb(75, 75, 253); 
+  --clr-red: rgb(223, 65, 65);
+  --clr-purple: rgb(118, 0, 118);
+  
 }
 .darkmode {
   background-color: var(--clr-dark);
@@ -36,6 +42,116 @@ img {
 body.darkmode a {
   color: white;
 }
+
+.purplemode {
+  background-color: var(--clr-purple);
+  color: white;
+  transition: 0.4s ease-in-out;
+}
+.purple-mode-toggle {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  
+}
+
+body.purplemode a {
+  color: white;
+}
+
+
+.bluemode {
+  background-color: var(--clr-blue);
+  color: white;
+  transition: 0.4s ease-in-out;
+}
+.blue-mode-toggle {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  
+}
+
+body.bluemode a {
+  color: white;
+}
+
+.greenmode {
+  background-color: var(--clr-green);
+  color: black;
+  transition: 0.4s ease-in-out;
+}
+.green-mode-toggle {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  
+}
+
+body.greenmode a {
+  color: white;
+}
+
+.redmode {
+  background-color: var(--clr-red);
+  color: white;
+  transition: 0.4s ease-in-out;
+}
+.red-mode-toggle {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  
+}
+
+body.redmode a {
+  color: white;
+}
+
+.orangemode {
+  background-color: var(--clr-orange);
+  color: white;
+  transition: 0.4s ease-in-out;
+}
+.orange-mode-toggle {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  
+}
+
+body.orangemode a {
+  color: white;
+}
+
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+
+
+
+
 
 body {
   font-family: "Poppins", monospace;
