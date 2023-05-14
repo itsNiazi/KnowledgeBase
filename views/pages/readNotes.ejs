@@ -1,5 +1,29 @@
 <div class="container">
+    <script>
+        function sortNotes() {
+            const sortForm = document.getElementById("sortForm");
+            const sortOptions = document.getElementById("sortOptions");
+            const sortValue = sortOptions.value;
+            sortForm.action = `/users/dashboard/notes/sort?sortOptions=${sortValue}`;
+            sortForm.submit();
+        }
+    </script>
     <a href="/users/dashboard/notes/add">Add note</a>
+    <div class="dropdownMenu">
+        <div class="dropdownMenu-content">
+            <form id="sortForm" action="/users/dashboard/notes/sort" method="POST">
+                <label for="sortNotes">Sort Notes</label>
+                <select id="sortOptions" onchange="sortNotes()">
+                    <option value="sortByNameAsc">Sort by Title (Asc)</option>
+                    <option value="sortByNameDesc">Sort by Title (Desc)</option>
+                    <option value="sortByCategoryAsc">Sort by Category (Asc)</option>
+                    <option value="sortByCategoryDesc">Sort by Category (Desc)</option>
+                    <option value="sortByDateAsc">Sort by Date (Asc)</option>
+                    <option value="sortByDateDesc">Sort by Date (Desc)</option>
+                </select>
+            </form>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <% notes.forEach(function(note) { %>
@@ -12,6 +36,7 @@
                             <p class="card-text">
                                 <%= truncateText(note.content, 50) %>
                             </p>
+                            <p class="card-date">Created: <%= note.created.toISOString().split('T')[0] %></p>
                             <a href="notes/<%= note.id %>" class="btn btn-primary">View</a>
                         </div>
                     </div>

@@ -46,6 +46,56 @@ async function getUserNote(req, res) {
   }
 }
 
+async function sortNotes(req, res) {
+  function truncateText(text, limit) {
+    const truncated = text.substring(0, limit);
+    return text.length > limit ? truncated + "..." : truncated;
+  }
+  try {
+    const sortValue = req.query.sortOptions;
+    const userId = req.user.id;
+    let orderBy;
+
+
+    switch (sortValue) {
+      case "sortByNameAsc":
+        orderBy = "title ASC";
+        break;
+      case "sortByNameDesc":
+        orderBy = "title DESC";
+        break;
+      case "sortByCategoryAsc":
+        orderBy = "category ASC";
+        break;
+      case "sortByCategoryDesc":
+        orderBy = "category DESC";
+        break;
+      case "sortByDateAsc":
+        orderBy = "created ASC";
+        break;
+      case "sortByDateDesc":
+        orderBy = "created DESC";
+        break;
+      default:
+        orderBy = "id DESC";
+    }
+
+    const notes = await pool.query(
+      `SELECT * FROM notes WHERE user_id = $1 ORDER BY ${orderBy}`,
+      [userId]
+    );
+
+    res.render("pages/readNotes", {
+      notes: notes.rows,
+      truncateText,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+}
+
+
 async function getViewNote(req, res) {
   try {
     const noteId = req.params.id;
@@ -139,4 +189,5 @@ module.exports = {
   editNote,
   updateNote,
   searchNote,
+  sortNotes
 };
