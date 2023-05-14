@@ -19,115 +19,66 @@ img {
 }
 
 :root {
-  --clr-dark: black;
-  --clr-light: white;
-  --clr-orange: rgb(218, 170, 81);
-  --clr-green: rgb(117, 178, 117);
-  --clr-blue:rgb(75, 75, 253); 
-  --clr-red: rgb(223, 65, 65);
-  --clr-purple: rgb(118, 0, 118);
-  
+  --color-3: #ff6161; 
+  --color-4: #6060f7; 
+  --color-5: #7acd7a; 
+  --color-6: #ffa500; 
+  --color-7: #8d5b8d; 
+  --color-2: #000000; 
+  --color-1: #ffffff;
 }
-.darkmode {
-  background-color: var(--clr-dark);
-  color: white;
-}
-.dark-mode-toggle {
+
+
+.color-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   border: none;
-  background: none;
+  margin-right: 10px;
   cursor: pointer;
-  padding: 0;
 }
 
-body.darkmode a {
-  color: white;
+#white {
+  background-color: var(--color-1);
+
 }
 
-.purplemode {
-  background-color: var(--clr-purple);
-  color: white;
-  transition: 0.4s ease-in-out;
-}
-.purple-mode-toggle {
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 0;
-  
+#black {
+  background-color: var(--color-2);
+  color: var(--color-1)
+
 }
 
-body.purplemode a {
-  color: white;
+#red {
+  background-color: var(--color-3);
+  color: var(--color-2);
+}
+
+#blue {
+  background-color:var(--color-4);
+  color: var(--color-1);
+}
+
+#green {
+  background-color: var(--color-5);
+  color: var(--color-2);
+}
+
+#orange {
+  background-color: var(--color-6);
+  color: var(--color-2);
+}
+
+#purple {
+  background-color: var(--color-7);
+  color: var(--color-1)
 }
 
 
-.bluemode {
-  background-color: var(--clr-blue);
-  color: white;
-  transition: 0.4s ease-in-out;
-}
-.blue-mode-toggle {
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 0;
-  
+.color-button.active {
+  border: 3px solid rgba(0, 0, 0, 0.62);;
 }
 
-body.bluemode a {
-  color: white;
-}
-
-.greenmode {
-  background-color: var(--clr-green);
-  color: black;
-  transition: 0.4s ease-in-out;
-}
-.green-mode-toggle {
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 0;
-  
-}
-
-body.greenmode a {
-  color: white;
-}
-
-.redmode {
-  background-color: var(--clr-red);
-  color: white;
-  transition: 0.4s ease-in-out;
-}
-.red-mode-toggle {
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 0;
-  
-}
-
-body.redmode a {
-  color: white;
-}
-
-.orangemode {
-  background-color: var(--clr-orange);
-  color: white;
-  transition: 0.4s ease-in-out;
-}
-.orange-mode-toggle {
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 0;
-  
-}
-
-body.orangemode a {
-  color: white;
-}
 
 
 .dropdown-menu {
@@ -138,18 +89,15 @@ body.orangemode a {
 
 .dropdown:hover .dropdown-menu {
   display: block;
-  background: rgba(0, 0, 0, 0.1);
+  background: #ffffff4d;
 }
 
 .dropdown-menu li a {
   display: block;
   padding: 10px;
   text-decoration: none;
-  color: #333;
+  
 }
-
-
-
 
 
 
