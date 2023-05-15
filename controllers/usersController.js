@@ -13,8 +13,24 @@ function getLogin(req, res) {
   });
 }
 
-function getDashboard(req, res) {
-  res.render("pages/dashboard", { user: req.user.username });
+async function getDashboard(req, res) {
+  userId = req.user.id;
+  const user_amount = await pool.query(
+    "SELECT amount FROM users WHERE id = $1",
+    [userId]
+  );
+  const amount = user_amount.rows[0].amount;
+  let welcomeText;
+  if ( amount == 0 ) {
+    welcomeText = "You don't have any notes yet.";
+  }
+  else if ( amount == 1 ) {
+    welcomeText = "You currently have only one note.";
+  }
+  else {
+    welcomeText = `You currently have ${amount} notes.`;
+  }
+  res.render("pages/dashboard", { user: req.user.username, welcomeText });
 }
 
 function getLogout(req, res) {
