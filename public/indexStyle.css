@@ -237,14 +237,13 @@ input[type="password"] {
 
 .dropdownMenu {
   position: relative;
-  display: block;
+  display: flexbox;
   align-items: center;
   float: right;
 }
 
 .dropdownMenu-content {
   display: block;
-  position: absolute;
   min-width: 160px;
   z-index: 1;
 }
