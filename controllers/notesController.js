@@ -31,6 +31,7 @@ async function getUserNote(req, res) {
     return text.length > limit ? truncated + "..." : truncated;
   }
   try {
+    const { sortBy } = req.query;
     const userId = req.user.id;
     const notes = await pool.query(
       `SELECT * FROM notes WHERE user_id = $1 ORDER BY id DESC`,
@@ -39,6 +40,7 @@ async function getUserNote(req, res) {
     res.render("pages/readNotes", {
       notes: notes.rows,
       truncateText,
+      sortBy,
     });
   } catch (err) {
     console.error(err);
@@ -47,54 +49,46 @@ async function getUserNote(req, res) {
 }
 
 async function sortNotes(req, res) {
-  function truncateText(text, limit) {
-    const truncated = text.substring(0, limit);
-    return text.length > limit ? truncated + "..." : truncated;
-  }
   try {
-    const sortValue = req.query.sortOptions;
     const userId = req.user.id;
-    let orderBy;
+    const { sortBy } = req.query;
+    let query = "SELECT * FROM notes WHERE user_id = $1";
 
-
-    switch (sortValue) {
-      case "sortByNameAsc":
-        orderBy = "title ASC";
+    // Sort the notes based on the selected criteria
+    switch (sortBy) {
+      case "titleAsc":
+        query += " ORDER BY title ASC";
         break;
-      case "sortByNameDesc":
-        orderBy = "title DESC";
+      case "titleDesc":
+        query += " ORDER BY title DESC";
         break;
-      case "sortByCategoryAsc":
-        orderBy = "category ASC";
+      case "categoryAsc":
+        query += " ORDER BY category ASC";
         break;
-      case "sortByCategoryDesc":
-        orderBy = "category DESC";
+      case "categoryDesc":
+        query += " ORDER BY category DESC";
         break;
-      case "sortByDateAsc":
-        orderBy = "created ASC";
+      case "dateAsc":
+        query += " ORDER BY created ASC";
         break;
-      case "sortByDateDesc":
-        orderBy = "created DESC";
-        break;
+      case "dateDesc":
       default:
-        orderBy = "id DESC";
+        query += " ORDER BY created DESC";
+        break;
     }
 
-    const notes = await pool.query(
-      `SELECT * FROM notes WHERE user_id = $1 ORDER BY ${orderBy}`,
-      [userId]
-    );
+    const result = await pool.query(query, [userId]);
 
-    res.render("pages/readNotes", {
-      notes: notes.rows,
-      truncateText,
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Server Error");
+    function truncateText(text, limit) {
+      const truncated = text.substring(0, limit);
+      return text.length > limit ? truncated + "..." : truncated;
+    }
+    res.render("pages/readNotes", { notes: result.rows, truncateText, sortBy });
+  } catch (error) {
+    console.error("Error retrieving notes:", error);
+    res.status(500).send("Internal Server Error");
   }
 }
-
 
 async function getViewNote(req, res) {
   try {
@@ -189,5 +183,5 @@ module.exports = {
   editNote,
   updateNote,
   searchNote,
-  sortNotes
+  sortNotes,
 };
