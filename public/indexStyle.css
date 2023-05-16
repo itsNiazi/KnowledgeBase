@@ -322,3 +322,6 @@ input[type="password"] {
   text-decoration: none;
   display: block;
 }
+a {
+  color: white;
+}

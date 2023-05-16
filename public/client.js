@@ -114,6 +114,22 @@ if (themeColor && textColor) {
 //   }
 // });
 
+// Fetch notes from the server and initialize Fuse object
+fetch("/search")
+  .then((response) => response.json())
+  .then((notes) => {
+    const fuse = new Fuse(notes, fuseOptions);
+    console.log(fuse);
+
+    // Event listener for input change
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", function () {
+      const searchTerm = this.value;
+      const results = fuse.search(searchTerm);
+      renderSearchResults(results);
+    });
+  });
+
 const fuseOptions = {
   keys: ["title"],
   includeMatches: true,
@@ -141,18 +157,3 @@ function renderSearchResults(results) {
     searchResults.appendChild(li);
   }
 }
-
-// Fetch notes from the server and initialize Fuse object
-fetch("/search")
-  .then((response) => response.json())
-  .then((notes) => {
-    const fuse = new Fuse(notes, fuseOptions);
-
-    // Event listener for input change
-    const searchInput = document.getElementById("searchInput");
-    searchInput.addEventListener("input", function () {
-      const searchTerm = this.value;
-      const results = fuse.search(searchTerm);
-      renderSearchResults(results);
-    });
-  });
