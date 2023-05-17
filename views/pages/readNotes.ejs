@@ -22,7 +22,10 @@
             <h5 class="card-title"><%= note.title %></h5>
             <p class="card-text"><%= truncateText(note.content, 50) %></p>
             <p class="card-date">
-              Created: <%= note.created.toISOString().split('T')[0] %>
+              <span>Created: <%= note.created.toISOString().split('T')[0] %></span>
+              <% if (note.updated.toISOString().split('T')[0] !== note.created.toISOString().split('T')[0]) { %>
+                <span class="edited-date">Edited: <%= note.updated.toISOString().split('T')[0] %></span>
+              <% } %>
             </p>
             <a href="/users/dashboard/notes/<%= note.id %>" class="btn btn-primary">View</a>
 
