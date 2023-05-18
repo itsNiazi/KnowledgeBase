@@ -349,7 +349,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 20%;
+  width: 360px;
   height: auto;
 }
 
@@ -368,18 +368,35 @@ a {
 
 #inputImage {
   width: 65%;
-  margin: 5px;
   margin-bottom: 0;
   font-style: italic;
 }
 
-#changePhoto, #editPhotoButton, #deletePhotoButton {
+#changePhoto, #editPhotoButton, #deleteButton {
   border: 0.5px solid #181818;
-  border-radius: 5%;
   color: black;
   background-color: #e8e8e8;
   width: auto;
+  height: 24px;
   font-style: italic;
   padding: 3px 10px;
   font-size: 10pt;
+}
+
+#inputImage{
+  font-size: 10pt;
+  float: left;
+}
+
+#changePhoto{
+  width: 80px;
+}
+#editPhotoForm{
+  display: none;
+  margin: 10px 0px;
+  height: 30px;
+}
+
+#deleteForm, #changePhoto{
+  float: right;
 }

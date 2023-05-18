@@ -1,6 +1,6 @@
 <div class="container">
-  <p>Welcome to KnowledgeBase!</p>
   <div class="userContainer">
+    <p>Welcome to KnowledgeBase!</p>
     <img id="userImage" src="<%= profileImage %>" alt="Profile Image">
     <p class="userName">
       <%= user.charAt(0).toUpperCase() + user.slice(1)%>
@@ -11,7 +11,7 @@
         <input id="inputImage" type="file" name="avatar" accept="image/*">
         <button id="changePhoto" type="submit">Save</button>
       </form>
-      <form id="deletePhoto" action="/users/delete" method="POST">
+      <form id="deleteForm" action="/users/delete" method="POST">
         <button id="deleteButton">Delete photo</button>
       </form>
     </div>
@@ -24,16 +24,19 @@
 
 <script>
   const editPhotoButton = document.getElementById("editPhotoButton");
-  const deletePhotoForm = document.getElementById("deletePhoto");
+  const editPhotoForm = document.getElementById("editPhotoForm");
+  const deleteForm = document.getElementById("deleteForm");
+  const buttonContainer = document.querySelector(".buttonContainer");
 
   editPhotoButton.addEventListener("click", function() {
-    const buttonContainer = document.querySelector(".buttonContainer");
-    if (deletePhotoForm.style.display === "none") {
-      deletePhotoForm.style.display = "block";
-      buttonContainer.style.flexDirection = "column";
-    } else {
-      deletePhotoForm.style.display = "none";
+    if (editPhotoForm.style.display === "block") {
+      editPhotoForm.style.display = "none";
       buttonContainer.style.flexDirection = "row";
+      deleteForm.style.width = "";
+    } else {
+      editPhotoForm.style.display = "block";
+      buttonContainer.style.flexDirection = "column";
+      deleteButton.style.width = "100%";
     }
   });
 </script>

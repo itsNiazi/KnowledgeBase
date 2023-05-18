@@ -62,12 +62,6 @@ async function sortNotes(req, res) {
       case "titleDesc":
         query += " ORDER BY title DESC";
         break;
-      case "categoryAsc":
-        query += " ORDER BY category ASC";
-        break;
-      case "categoryDesc":
-        query += " ORDER BY category DESC";
-        break;
       case "dateAsc":
         query += " ORDER BY created ASC";
         break;
