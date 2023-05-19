@@ -5,6 +5,8 @@ const session = require("express-session");
 const flash = require("express-flash");
 const passport = require("passport");
 
+const Fuse = require("fuse.js");
+
 // Imports modules
 const pool = require("./models/db");
 const initializePassport = require("./config/passportConfig");
@@ -61,6 +63,32 @@ app.get("/search", (req, res) => {
       }
     }
   );
+});
+
+app.get("/search-results", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT id, title FROM notes WHERE user_id = $1",
+      [req.user.id]
+    );
+    const options = {
+      keys: ["title"],
+      threshold: 0.3,
+    };
+    const fuse = new Fuse(result.rows, options);
+    const searchResult = fuse.search(req.query.query);
+
+    const notesWithLinks = searchResult.map((note) => ({
+      id: note.item.id,
+      title: note.item.title,
+      link: `/users/dashboard/notes/${note.item.id}`,
+    }));
+
+    res.render("pages/search", { results: notesWithLinks });
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
 });
 
 // 404 Page Not Found

@@ -77,43 +77,6 @@ if (themeColor && textColor) {
   });
 }
 
-// const searchInput = document.getElementById("searchInput");
-// const searchResults = document.getElementById("searchResults");
-
-// var fuse; // Stores the fuse object, when the note list has been fetch from the server (undefined until then)
-
-// // When page loads, fetch all note titles from the server(db) and create a fuse object
-// fetch(`/search`)
-//   .then((response) => response.json())
-//   .then((notes) => {
-//     fuse = new Fuse(notes, {
-//       keys: ["title"],
-//       includeMatches: true,
-//       treshold: 0.3,
-//       useExtendedSearch: true,
-//     });
-//   });
-
-// searchInput.addEventListener("input", function () {
-//   if (fuse !== undefined) {
-//     const searchTerm = this.value;
-
-//     searchResults.innerHTML = "";
-
-//     const results = fuse.search(searchTerm);
-//     console.log(results);
-//     results.forEach((result) => {
-//       const note = result.item;
-//       const title = note.title;
-
-//       const li = document.createElement("li");
-//       li.textContent = title;
-
-//       searchResults.appendChild(li);
-//     });
-//   }
-// });
-
 // Fetch notes from the server and initialize Fuse object
 fetch("/search")
   .then((response) => response.json())
