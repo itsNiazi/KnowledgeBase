@@ -141,13 +141,13 @@ async function uploadImage(req, res) {
 
   const fileExtension = path.extname(avatar.originalname);
   randomFileName += fileExtension;
-  const filePath = path.join(__dirname, '..', 'public', 'images', 'avatars', randomFileName);
+  const filePath = path.join('public', 'images', 'avatars', randomFileName);
 
   try {
     fs.copyFileSync(avatar.path, filePath);
     await pool.query("UPDATE users SET profileimage = $1 WHERE id = $2", [randomFileName, userId]);
 
-    return res.redirect("dashboard/profile");
+    return res.redirect("profile");
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error.");
@@ -162,13 +162,13 @@ async function deleteImage(req, res) {
 
   try {
     if (profileImage != "profile.png") {
-      const filePath = path.join(__dirname, '..', 'public', 'images', 'avatars', profileImage);
+      const filePath = path.join('public', 'images', 'avatars', profileImage);
       console.log(filePath);
       fs.unlinkSync(filePath);
       await pool.query("UPDATE users SET profileimage = 'profile.png' WHERE id = $1", [userId]);
     }
 
-    return res.redirect("dashboard/profile");
+    return res.redirect("profile");
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error.");
