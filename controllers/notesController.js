@@ -146,32 +146,6 @@ async function updateNote(req, res) {
   }
 }
 
-async function searchNote(req, res) {
-  try {
-    const result = await pool.query(
-      "SELECT id, title FROM notes WHERE user_id = $1",
-      [req.user.id]
-    );
-    const options = {
-      keys: ["title"],
-      threshold: 0.4,
-    };
-    const fuse = new Fuse(result.rows, options);
-    const searchResult = fuse.search(req.query.query);
-
-    const notesWithLinks = searchResult.map((note) => ({
-      id: note.item.id,
-      title: note.item.title,
-      link: `/users/dashboard/notes/${note.item.id}`,
-    }));
-
-    res.render("pages/search", { results: notesWithLinks });
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
-  }
-}
-
 module.exports = {
   getNote,
   postNote,
@@ -180,6 +154,5 @@ module.exports = {
   deleteNote,
   editNote,
   updateNote,
-  searchNote,
   sortNotes,
 };

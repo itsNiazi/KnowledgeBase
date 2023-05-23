@@ -8,6 +8,7 @@
       <option value="titleDesc" <%=sortBy=== 'titleDesc' ? 'selected' : '' %>>Sort by Title (Desc)</option>
       <option value="dateAsc" <%=sortBy=== 'dateAsc' ? 'selected' : '' %>>Sort by Date (Asc)</option>
       <option value="dateDesc" <%=sortBy=== 'dateDesc' ? 'selected' : '' %>>Sort by Date (Desc)</option>
+
     </select>
   </form>
   
@@ -24,6 +25,7 @@
               <% if (note.updated.toISOString().split('T')[0] !== note.created.toISOString().split('T')[0]) { %>
                 <span class="edited-date">Edited: <%= note.updated.toISOString().split('T')[0] %></span>
               <% } %>
+
             </p>
             <a href="/users/dashboard/notes/<%= note.id %>" class="btn btn-primary">View</a>
 

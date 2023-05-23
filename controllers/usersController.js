@@ -18,6 +18,7 @@ function getLogin(req, res) {
   });
 }
 
+
 async function invokeGetImage(req, res) {
   const achievements = res.locals.achievements;
 
@@ -37,21 +38,25 @@ async function getImage(req, res) {
   const profilePhoto = result.rows[0].profileimage;
   const imagePath = "/images/avatars/" + profilePhoto;
 
+
   const user_amount = await pool.query(
     "SELECT amount FROM users WHERE id = $1",
     [userId]
   );
   const amount = user_amount.rows[0].amount;
   let welcomeText;
+
   if (amount == 0) {
     welcomeText = "You don't have any notes yet.";
   }
   else if (amount == 1) {
+
     welcomeText = "You currently have only one note.";
   }
   else {
     welcomeText = `You currently have ${amount} notes.`;
   }
+
   
   res.render("pages/profile", { 
     user: req.user.username, 
@@ -59,6 +64,7 @@ async function getImage(req, res) {
     profileImage: imagePath, 
     getProgressColor: achievementsController.getProgressColor 
 });
+
 }
 
 function getLogout(req, res) {
