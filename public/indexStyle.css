@@ -7,6 +7,7 @@
   padding: 0;
   margin: 0;
 }
+
 img {
   max-width: 100%;
   display: block;
@@ -144,6 +145,7 @@ body.darkmode form input[name="query"] {
   background-color: rgb(78, 78, 78);
   color: white;
 }
+
 form input[name="query"] {
   width: 400px;
   height: 30px;
@@ -154,6 +156,7 @@ form input[name="query"] {
   font-size: 16px;
   background-color: rgb(219, 218, 218);
 }
+
 form input[name="query"]:focus {
   outline: none;
 }
@@ -191,15 +194,44 @@ header {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   color: black;
+  height: 180px;
+}
+
+.btn.btn-primary {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
 }
 
 .card-date {
   position: absolute;
   right: 0;
-  margin: 8px;
+  margin: 28px;
   font-size: 12px;
   color: gray;
+  float: left;
+}
+
+.container-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edited-date {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  font-size: 12px;
+  color: gray;
+}
+
+#sortingLabel {
+  margin-bottom: 15px;
 }
 
 
@@ -227,12 +259,6 @@ input[type="password"] {
   border-radius: 5px;
 }
 
-.container-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .allAchievements {
   display: flex;
   align-items: center;
@@ -241,25 +267,31 @@ input[type="password"] {
   width: 100%;
   margin: 0%;
   text-align: center;
+  left: 0;
 }
 
 #achievements {
   width: 15%;
   margin: 3%;
   position: relative;
+  left: 0;
+}
+
+#achievementsText {
+  text-align: center;
 }
 
 .achievement-image {
-  background-color: #4b0d10;
+  background-color: #b8c1ec;
   border-radius: 20%;
   position: relative;
+  width: 200px;
+  height: 200px;
 }
 
 .achievement-image img {
   position: absolute;
   left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .achievement-image-opaque {
@@ -280,7 +312,8 @@ input[type="password"] {
 /* Live search */
 #searchResults {
   position: absolute;
-  width: 313px; /* Adjust the width as needed */
+  width: 313px;
+  /* Adjust the width as needed */
   list-style: none;
   padding: 0;
   margin: 0;
@@ -332,6 +365,166 @@ input[type="password"] {
   text-decoration: none;
   display: block;
 }
+
 a {
   color: white;
+}
+
+.userName {
+  font-size: 14pt;
+}
+
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: auto;
+}
+
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+#userImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+#inputImage {
+  width: 65%;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+#changePhoto,
+#editPhotoButton,
+#deleteButton {
+  border: 0.5px solid #181818;
+  color: black;
+  background-color: #e8e8e8;
+  width: auto;
+  height: 24px;
+  font-style: italic;
+  padding: 3px 10px;
+  font-size: 10pt;
+}
+
+#inputImage {
+  font-size: 10pt;
+  float: left;
+}
+
+#changePhoto {
+  width: 80px;
+}
+
+#editPhotoForm {
+  display: none;
+  margin: 10px 0px;
+  height: 30px;
+}
+
+#deleteForm,
+#changePhoto {
+  float: right;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+  margin-top: 15px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar-container p {
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0;
+  position: absolute;
+  z-index: 1;
+  cursor: default;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+  margin-top: 15px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+  margin-top: 15px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar-container p {
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0;
+  position: absolute;
+  z-index: 1;
+  cursor: default;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-bar.red {
+  background-color: #FF4136;
+}
+
+.progress-bar.orange {
+  background-color: #FF851B;
+}
+
+.progress-bar.yellow {
+  background-color: #FFDC00;
+}
+
+.progress-bar.green {
+  background-color: #2ECC40;
+}
+
+.progress-bar.red,
+.progress-bar.green,
+.progress-bar.yellow,
+.progress-bar.orange {
+  width: 100%;
 }

@@ -1,6 +1,6 @@
 const pool = require("../models/db");
 
-async function getUserAchievements(req, res) {
+async function getUserAchievements(req, res, next) {
   try {
     const userId = req.user.id;
     const user_amount = await pool.query(
@@ -43,7 +43,7 @@ async function getUserAchievements(req, res) {
       (achievement) => achievement.id
     );
     const allAchievements = await pool.query(
-      "SELECT id, image_url, name, description FROM achievements"
+      "SELECT id, image_url, name, description, requirement FROM achievements"
     );
     achievements = allAchievements.rows.map((achievement) => {
       const isUserAchievement = userAchievementIds.includes(achievement.id);
@@ -90,11 +90,58 @@ async function getUserAchievements(req, res) {
       );
     }
 
-    res.render("pages/achievements", { achievements });
+    const achievementsWithProgress = achievements.map((achievement) => {
+      const progress = Math.round(achievementProgress(achievement.id, amount, diffDays));
+      return { ...achievement, progress };
+    });
+
+    res.locals.achievements = achievementsWithProgress;
+    next()
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
 }
 
-module.exports = { getUserAchievements };
+function getProgressColor(progress) {
+  if (progress <= 25) {
+    return "red";
+  } else if (progress <= 50) {
+    return "orange";
+  } else if (progress <= 75) {
+    return "yellow";
+  } else {
+    return "green";
+  }
+}
+
+function achievementProgress(achievementId, amount, diffDays) {
+  switch (achievementId) {
+    case 1:
+      return Math.min((amount / 1) * 100, 100);
+    case 2:
+      return Math.min((amount / 5) * 100, 100);
+    case 3:
+      return Math.min((amount / 10) * 100, 100);
+    case 4:
+      return Math.min((amount / 25) * 100, 100);
+    case 5:
+      return Math.min((diffDays / 1) * 100, 100);
+    case 6:
+      return Math.min((diffDays / 7) * 100, 100);
+    case 7:
+      return Math.min((diffDays / 30) * 100, 100);
+    case 8:
+      return Math.min((diffDays / 90) * 100, 100);
+    default:
+      return 0;
+  }
+}
+
+
+
+module.exports = { 
+  getUserAchievements,
+  getProgressColor,
+  achievementProgress
+};

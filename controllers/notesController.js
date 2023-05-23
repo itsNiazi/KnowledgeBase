@@ -62,12 +62,6 @@ async function sortNotes(req, res) {
       case "titleDesc":
         query += " ORDER BY title DESC";
         break;
-      case "categoryAsc":
-        query += " ORDER BY category ASC";
-        break;
-      case "categoryDesc":
-        query += " ORDER BY category DESC";
-        break;
       case "dateAsc":
         query += " ORDER BY created ASC";
         break;
@@ -109,8 +103,12 @@ async function getViewNote(req, res) {
 }
 async function deleteNote(req, res) {
   try {
+    const userId = req.user.id;
     const noteId = req.params.id;
-    await pool.query("DELETE FROM notes WHERE id = $1", [noteId]);
+    await pool.query("UPDATE users SET amount = amount - 1 WHERE id = $1", [
+      userId,
+    ]);
+    await pool.query("")
     res.redirect("/users/dashboard/notes");
   } catch (err) {
     console.error(err);

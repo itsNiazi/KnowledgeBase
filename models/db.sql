@@ -4,7 +4,8 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     UNIQUE (username),
     amount int DEFAULT 0,
-    dateJoined TIMESTAMP
+    dateJoined TIMESTAMP,
+    profileImage VARCHAR(255) DEFAULT 'profile.png'
 );
 
 CREATE TABLE notes (
@@ -22,7 +23,8 @@ CREATE TABLE achievements(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    image_url VARCHAR(255) NOT NULL
+    image_url VARCHAR(255) NOT NULL,
+    requirement VARCHAR(255)
 );
 
 CREATE TABLE user_achievements (
