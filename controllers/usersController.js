@@ -3,6 +3,7 @@ const passport = require("passport");
 const pool = require("../models/db");
 const fs = require("fs");
 const path = require("path");
+const achievementsController = require("./achievementsController");
 
 
 
@@ -17,13 +18,25 @@ function getLogin(req, res) {
   });
 }
 
-async function getDashboard(req, res) {
+async function invokeGetImage(req, res) {
+  const achievements = res.locals.achievements;
+
+  try {
+    await getImage(req, res, achievements);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+}
+
+async function getImage(req, res) {
   const userId = req.user.id;
   const result = await pool.query("SELECT profileImage FROM users WHERE id = $1",
     [userId]
   );
   const profilePhoto = result.rows[0].profileimage;
   const imagePath = "/images/avatars/" + profilePhoto;
+
   const user_amount = await pool.query(
     "SELECT amount FROM users WHERE id = $1",
     [userId]
@@ -39,13 +52,24 @@ async function getDashboard(req, res) {
   else {
     welcomeText = `You currently have ${amount} notes.`;
   }
-  res.render("pages/dashboard", { user: req.user.username, welcomeText, profileImage: imagePath });
+  
+  res.render("pages/profile", { 
+    user: req.user.username, 
+    welcomeText, 
+    profileImage: imagePath, 
+    getProgressColor: achievementsController.getProgressColor 
+});
 }
 
 function getLogout(req, res) {
   req.logOut(() => {
     res.redirect("/");
   });
+}
+
+async function getDashboard(req, res) {
+  userId = req.user.id;
+  res.render("pages/dashboard", { user: req.user.username });
 }
 
 async function postRegister(req, res) {
@@ -108,15 +132,22 @@ async function uploadImage(req, res) {
 
   const userId = req.user.id;
   const avatar = req.file;
-  const filePath = path.join(__dirname, '..', 'public', 'images', 'avatars', avatar.originalname);
+  let randomFileName = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
+  for (let i = 0; i < 48; i++) {
+    randomFileName += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
 
+  const fileExtension = path.extname(avatar.originalname);
+  randomFileName += fileExtension;
+  const filePath = path.join(__dirname, '..', 'public', 'images', 'avatars', randomFileName);
 
   try {
     fs.copyFileSync(avatar.path, filePath);
-    await pool.query("UPDATE users SET profileimage = $1 WHERE id = $2", [avatar.originalname, userId]);
+    await pool.query("UPDATE users SET profileimage = $1 WHERE id = $2", [randomFileName, userId]);
 
-    return res.redirect("dashboard");
+    return res.redirect("dashboard/profile");
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error.");
@@ -137,7 +168,7 @@ async function deleteImage(req, res) {
       await pool.query("UPDATE users SET profileimage = 'profile.png' WHERE id = $1", [userId]);
     }
 
-    return res.redirect("dashboard");
+    return res.redirect("dashboard/profile");
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error.");
@@ -149,8 +180,10 @@ async function deleteImage(req, res) {
 module.exports = {
   getRegister,
   getLogin,
-  getDashboard,
+  invokeGetImage,
+  getImage,
   getLogout,
+  getDashboard,
   postRegister,
   postLogin,
   uploadImage,

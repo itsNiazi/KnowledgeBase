@@ -1,0 +1,71 @@
+<div class="container">
+
+    <body>
+        <div class="container">
+            <div class="userContainer">
+                <img id="userImage" src="<%= profileImage %>" alt="Profile Image">
+                <p class="userName">
+                    <%= user.charAt(0).toUpperCase() + user.slice(1)%>
+                </p>
+                <div class="buttonContainer">
+                    <button id="editPhotoButton">Edit profile photo</button>
+                    <form id="editPhotoForm" action="/users/upload" method="POST" enctype="multipart/form-data">
+                        <input id="inputImage" type="file" name="avatar" accept="image/*">
+                        <button id="changePhoto" type="submit">Save</button>
+                    </form>
+                    <form id="deleteForm" action="/users/delete" method="POST">
+                        <button id="deleteButton">Delete photo</button>
+                    </form>
+                </div>
+                <p id="welcomeText">
+                    <%= welcomeText %>
+                </p>
+            </div>
+        </div>
+
+
+        <script>
+            const editPhotoButton = document.getElementById("editPhotoButton");
+            const editPhotoForm = document.getElementById("editPhotoForm");
+            const deleteForm = document.getElementById("deleteForm");
+            const buttonContainer = document.querySelector(".buttonContainer");
+
+            editPhotoButton.addEventListener("click", function () {
+                if (editPhotoForm.style.display === "block") {
+                    editPhotoForm.style.display = "none";
+                    buttonContainer.style.flexDirection = "row";
+                    deleteForm.style.width = "";
+                } else {
+                    editPhotoForm.style.display = "block";
+                    buttonContainer.style.flexDirection = "column";
+                    deleteButton.style.width = "100%";
+                }
+            });
+        </script>
+        <h2 id="achievementsText">Your achievements</h2>
+        <div class="allAchievements">
+            <% achievements.forEach(achievement=> { %>
+              <figure id="achievements">
+                <div class="achievement-image-container">
+                  <img class="achievement-image <%= achievement.className %>"
+                    src="/images/<%= achievement.image_url %>" title="<%= achievement.description %>">
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar <%= getProgressColor(achievement.progress) %>"
+                    style="width: <%= achievement.progress %>%;" title="<%= achievement.requirement %>"></div>
+                  <p title="<%= achievement.requirement %>">
+                    <%= achievement.progress %>%
+                  </p>
+                </div>
+                <figcaption id="achievementName">
+                  <%= achievement.name %>
+                </figcaption>
+              </figure>
+            <% }); %>
+          </div>
+          
+          
+          
+          
+    </body>
+</div>

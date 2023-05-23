@@ -38,12 +38,12 @@ app.use(passport.session());
 const indexRoute = require("./routes/index");
 const usersRoute = require("./routes/users");
 const notesRoute = require("./routes/notes");
-const rewardsRoute = require("./routes/achievements");
+const rewardsRoute = require("./routes/profile");
 
 app.use("/", indexRoute);
 app.use("/users", usersRoute);
 app.use("/users/dashboard/notes", notesRoute);
-app.use("/users/achievements", rewardsRoute);
+app.use("/users/profile", rewardsRoute);
 
 app.get("/search", (req, res) => {
   const userId = req.user.id;
