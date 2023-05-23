@@ -1,16 +1,18 @@
-<form action="/users/login" method="POST">
-    <fieldset>
-        <legend>Sign In to KnowledgeBase</legend>
-        <input type="text" id="username" name="username" placeholder="Username" required>
-        <input type="password" id="password" class="space" name="password" placeholder="Password" required>
-        <input type="submit" value="Sign In">
-    </fieldset>
-</form>
-<% if (messages.error && messages.error.length> 0) { %>
-    <div>
-        <%= messages.error[0] %>
+<div class="container-card">
+    <div class="card-form">
+        <form action="/users/login" method="POST">
+            <fieldset>
+                <legend>Sign In to KnowledgeBase</legend>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="password" id="password" class="space" name="password" placeholder="Password" required>
+                <input type="submit" value="Sign In">
+            </fieldset>
+        </form>
+        <% if (messages.error && messages.error.length> 0) { %>
+            <div>
+                <%= messages.error[0] %>
+            </div>
+            <% } %>
+                <a href="/users/register">Not a member?</a>
     </div>
-    <% } %>
-
-
-        <a href="/users/register">Not a member?</a>
+</div>

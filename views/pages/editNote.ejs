@@ -1,12 +1,12 @@
 <form action="/users/dashboard/notes/<%= note.id %>/edit" method="POST">
     <label for="title">Title:</label>
-    <input type="text" name="title" value="<%= note.title %>"><br>
+    <input type="text" name="title" value="<%= note.title %>"  required ><br>
 
     <label for="category">Category:</label>
-    <input type="text" name="category" value="<%= note.category %>"><br>
+    <input type="text" name="category" value="<%= note.category %>"  required ><br>
 
     <label for="content">Content:</label>
-    <textarea name="content"><%= note.content %></textarea><br>
+    <textarea name="content"  required ><%= note.content %></textarea><br>
 
     <input type="submit" value="Save">
 </form>

@@ -7,6 +7,7 @@
   padding: 0;
   margin: 0;
 }
+
 img {
   max-width: 100%;
   display: block;
@@ -18,14 +19,512 @@ img {
   }
 }
 
+:root {
+  --color-3: #ff6161;
+  --color-4: #6060f7;
+  --color-5: #7acd7a;
+  --color-6: #ffa500;
+  --color-7: #8d5b8d;
+  --color-2: #181818;
+  --color-1: #e8e8e8;
+}
+
+.color-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#white {
+  background-color: var(--color-1);
+}
+
+#black {
+  background-color: var(--color-2);
+  color: var(--color-1);
+}
+
+#red {
+  background-color: var(--color-3);
+  color: var(--color-2);
+}
+
+#blue {
+  background-color: var(--color-4);
+  color: var(--color-1);
+}
+
+#green {
+  background-color: var(--color-5);
+  color: var(--color-2);
+}
+
+#orange {
+  background-color: var(--color-6);
+  color: var(--color-2);
+}
+
+#purple {
+  background-color: var(--color-7);
+  color: var(--color-1);
+}
+
+.color-button.active {
+  border: 3px solid rgba(0, 0, 0, 0.62);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  background: #ffffff4d;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
+
 body {
-  background-color: purple;
-  color: rgb(18, 14, 14);
+  font-family: "Poppins", monospace;
+}
+
+section {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s;
+}
+
+.display {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+
+header {
+  max-width: 1400px;
+  width: 90%;
+  margin-inline: auto;
+}
+
+footer {
+  text-align: center;
+}
+
+body.darkmode form input[name="query"] {
+  width: 400px;
+  height: 30px;
+  padding: 5px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: rgb(78, 78, 78);
+  color: white;
+}
+
+form input[name="query"] {
+  width: 400px;
+  height: 30px;
+  padding: 5px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: rgb(219, 218, 218);
+}
+
+form input[name="query"]:focus {
+  outline: none;
+}
+
+form button[type="submit"] {
+  height: 30px;
+  width: 70px;
+  background-color: rgb(117, 16, 7);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form button[type="submit"]:hover {
+  background-color: rgb(100, 0, 0);
+}
+
+header {
+  padding: 10px 0;
+}
+
+.card-form {
+  background: rgba(255, 255, 255, 0.436);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  padding: 2rem;
+  height: 300px;
+  width: 450px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: black;
+  height: 180px;
+}
+
+.btn.btn-primary {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+}
+
+.card-date {
+  position: absolute;
+  right: 0;
+  margin: 28px;
+  font-size: 12px;
+  color: gray;
+  float: left;
+}
+
+.container-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edited-date {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  font-size: 12px;
+  color: gray;
+}
+
+#sortingLabel {
+  margin-bottom: 15px;
+}
+
+
+.edited-date {
+  position: absolute;
+  margin-left: 7px;
+  left: 0;
+  top: 20px;
+  font-size: 12px;
+  color: gray;
+}
+
+
+fieldset {
+  border: 0;
+}
+
+input[name="username"],
+input[type="password"] {
+  display: block;
+  margin-bottom: 10px;
+  outline: none;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.allAchievements {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0%;
+  text-align: center;
+  left: 0;
+}
+
+#achievements {
+  width: 15%;
+  margin: 3%;
+  position: relative;
+  left: 0;
+}
+
+#achievementsText {
+  text-align: center;
+}
+
+.achievement-image {
+  background-color: #b8c1ec;
+  border-radius: 20%;
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.achievement-image img {
+  position: absolute;
+  left: 0;
+}
+
+.achievement-image-opaque {
+  opacity: 1;
+}
+
+.achievement-image-transparent {
+  opacity: 0.4;
+}
+
+#achievementName {
+  position: absolute;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Live search */
+#searchResults {
+  position: absolute;
+  width: 313px;
+  /* Adjust the width as needed */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+
+#searchResults li {
+  cursor: pointer;
+}
+
+#searchResults li:hover {
+  background-color: lightgray;
+}
+
+#searchResults li:last-child {
+  border-bottom: none;
+}
+
+#searchResults a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+#searchResults a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdownMenu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  float: right;
+}
+
+.dropdownMenu-content {
+  display: block;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdownMenu-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 a {
   color: white;
 }
-legend {
-  color: white;
+
+.userName {
+  font-size: 14pt;
+}
+
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: auto;
+}
+
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+#userImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+#inputImage {
+  width: 65%;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+#changePhoto,
+#editPhotoButton,
+#deleteButton {
+  border: 0.5px solid #181818;
+  color: black;
+  background-color: #e8e8e8;
+  width: auto;
+  height: 24px;
+  font-style: italic;
+  padding: 3px 10px;
+  font-size: 10pt;
+}
+
+#inputImage {
+  font-size: 10pt;
+  float: left;
+}
+
+#changePhoto {
+  width: 80px;
+}
+
+#editPhotoForm {
+  display: none;
+  margin: 10px 0px;
+  height: 30px;
+}
+
+#deleteForm,
+#changePhoto {
+  float: right;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+  margin-top: 15px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar-container p {
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0;
+  position: absolute;
+  z-index: 1;
+  cursor: default;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+  margin-top: 15px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+  margin-top: 15px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar-container p {
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0;
+  position: absolute;
+  z-index: 1;
+  cursor: default;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-bar.red {
+  background-color: #FF4136;
+}
+
+.progress-bar.orange {
+  background-color: #FF851B;
+}
+
+.progress-bar.yellow {
+  background-color: #FFDC00;
+}
+
+.progress-bar.green {
+  background-color: #2ECC40;
+}
+
+.progress-bar.red,
+.progress-bar.green,
+.progress-bar.yellow,
+.progress-bar.orange {
+  width: 100%;
 }

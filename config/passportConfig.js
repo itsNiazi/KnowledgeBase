@@ -19,7 +19,6 @@ function initialize(passport) {
         if (err) {
           throw err;
         }
-        console.log(results.rows);
         if (results.rows.length > 0) {
           const user = results.rows[0];
           bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -29,11 +28,15 @@ function initialize(passport) {
             if (isMatch) {
               return done(null, user);
             } else {
-              return done(null, false, { message: "Password is incorrect" });
+              return done(null, false, {
+                message: "Incorrect username or password",
+              });
             }
           });
         } else {
-          return done(null, false, { message: "Username is incorrect" });
+          return done(null, false, {
+            message: "Incorrect username or password",
+          });
         }
       }
     );
