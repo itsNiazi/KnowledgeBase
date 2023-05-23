@@ -23,7 +23,8 @@ CREATE TABLE achievements(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    image_url VARCHAR(255) NOT NULL
+    image_url VARCHAR(255) NOT NULL,
+    requirement VARCHAR(255)
 );
 
 CREATE TABLE user_achievements (
