@@ -35,7 +35,7 @@ async function getImage(req, res) {
     [userId]
   );
   const profilePhoto = result.rows[0].profileimage;
-  const imagePath = "/images/avatars/" + profilePhoto;
+  const imagePath = "public/images/avatars/" + profilePhoto;
 
   const user_amount = await pool.query(
     "SELECT amount FROM users WHERE id = $1",

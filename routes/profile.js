@@ -3,7 +3,7 @@ const router = express.Router();
 const achievementsController = require("../controllers/achievementsController");
 const usersController = require("../controllers/usersController");
 const multer = require('multer');
-const upload = multer({ dest: '/images/avatars' });
+const upload = multer({ dest: 'public/images/avatars' });
 const { checkNotAuthenticated } = require("../controllers/authController");
 const { use } = require("passport");
 
