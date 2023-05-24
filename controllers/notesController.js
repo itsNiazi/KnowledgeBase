@@ -108,6 +108,7 @@ async function deleteNote(req, res) {
     await pool.query("UPDATE users SET amount = amount - 1 WHERE id = $1", [
       userId,
     ]);
+    await pool.query("DELETE FROM notes WHERE id = $1", [noteId]);
     await pool.query("")
     res.redirect("/users/dashboard/notes");
   } catch (err) {
