@@ -6,3 +6,6 @@ node_modules/
 
 #Mac file
 .DS_Store
+#
+public/images/avatars/*
+!public/images/avatars/profile.png

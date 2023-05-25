@@ -135,23 +135,25 @@ function postLogin(req, res, next) {
 }
 
 async function uploadImage(req, res) {
-
   const userId = req.user.id;
   const avatar = req.file;
   let randomFileName = '';
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
   for (let i = 0; i < 48; i++) {
-    randomFileName += characters.charAt(Math.floor(Math.random() * characters.length));
+    randomFileName += characters.charAt(Math.random() * characters.length);
   }
 
   const fileExtension = path.extname(avatar.originalname);
-  randomFileName += fileExtension;
-  const filePath = path.join('public', 'images', 'avatars', randomFileName);
+  const randomFileNameWithExtension = randomFileName + fileExtension;
+  const filePath = path.join('public', 'images', 'avatars', randomFileNameWithExtension);
 
   try {
-    fs.copyFileSync(avatar.path, filePath);
-    await pool.query("UPDATE users SET profileimage = $1 WHERE id = $2", [randomFileName, userId]);
+    fs.writeFileSync(filePath, fs.readFileSync(avatar.path));
+    if ( avatar.path) {
+    fs.unlinkSync(avatar.path);
+  }
+    await pool.query("UPDATE users SET profileimage = $1 WHERE id = $2", [randomFileNameWithExtension, userId]);
 
     return res.redirect("profile");
   } catch (error) {
@@ -159,6 +161,9 @@ async function uploadImage(req, res) {
     return res.status(500).send("Internal Server Error.");
   }
 }
+
+
+
 
 async function deleteImage(req, res) {
   const userId = req.user.id;
