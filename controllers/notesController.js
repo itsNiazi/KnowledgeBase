@@ -37,6 +37,7 @@ async function getUserNote(req, res) {
       `SELECT * FROM notes WHERE user_id = $1 ORDER BY id DESC`,
       [userId]
     );
+  
     res.render("pages/readNotes", {
       notes: notes.rows,
       truncateText,
@@ -101,6 +102,7 @@ async function getViewNote(req, res) {
     res.status(500).send("Server Error");
   }
 }
+
 async function deleteNote(req, res) {
   try {
     const userId = req.user.id;
@@ -140,12 +142,17 @@ async function updateNote(req, res) {
       "UPDATE notes SET title = $1, content = $2, category = $3, updated = $4 WHERE id = $5 ",
       [title, content, category, updated, noteId]
     );
-    res.redirect(`/users/dashboard/notes/${noteId}`);
+    const result = await pool.query("SELECT * FROM notes WHERE id = $1", [
+      noteId,
+    ]);
+    const updatedNote = result.rows[0];
+    res.render("pages/viewNotes", { note: updatedNote });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
 }
+
 
 module.exports = {
   getNote,

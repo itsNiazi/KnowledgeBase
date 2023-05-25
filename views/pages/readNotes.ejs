@@ -1,38 +1,40 @@
 <div class="container">
-    
+
   <a href="/users/dashboard/notes/add">Add note</a>
   <form action="/users/dashboard/notes/sort" method="GET">
     <label id="sortingLabel" for="sortSelect">Sort by:</label>
     <select name="sortBy" id="sortSelect" onchange="this.form.submit()">
-      <option value="titleAsc" <%=sortBy=== 'titleAsc' ? 'selected' : '' %>>Sort by Title (Asc)</option>
-      <option value="titleDesc" <%=sortBy=== 'titleDesc' ? 'selected' : '' %>>Sort by Title (Desc)</option>
-      <option value="dateAsc" <%=sortBy=== 'dateAsc' ? 'selected' : '' %>>Sort by Date (Asc)</option>
-      <option value="dateDesc" <%=sortBy=== 'dateDesc' ? 'selected' : '' %>>Sort by Date (Desc)</option>
+      <option value="titleAsc" <%=sortBy==='titleAsc' ? 'selected' : '' %>>Sort by Title (Asc)</option>
+      <option value="titleDesc" <%=sortBy==='titleDesc' ? 'selected' : '' %>>Sort by Title (Desc)</option>
+      <option value="dateAsc" <%=sortBy==='dateAsc' ? 'selected' : '' %>>Sort by Date (Asc)</option>
+      <option value="dateDesc" <%=sortBy==='dateDesc' ? 'selected' : '' %>>Sort by Date (Desc)</option>
 
     </select>
   </form>
-  
+
   <div class="container">
     <div class="row">
       <% notes.forEach(function(note) { %>
-      <div class="col-md-4 mb-3">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><%= note.title %></h5>
-            <p class="card-text"><%= truncateText(note.content, 50) %></p>
-            <p class="card-date">
-              <span>Created: <%= note.created.toISOString().split('T')[0] %></span>
-              <% if (note.updated.toISOString().split('T')[0] !== note.created.toISOString().split('T')[0]) { %>
-                <span class="edited-date">Edited: <%= note.updated.toISOString().split('T')[0] %></span>
-              <% } %>
-
-            </p>
-            <a href="/users/dashboard/notes/<%= note.id %>" class="btn btn-primary">View</a>
-
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= note.title %>
+              </h5>
+              <p class="card-text">
+                <%= truncateText(note.content, 50) %>
+              </p>
+              <p class="card-date">
+                <span>Created: <%= note.created.toISOString().split('T')[0] %></span>
+                <% if (note.updated > note.created) { %>
+                  <span class="edited-date">Edited: <%= note.updated.toISOString().split('T')[0] %></span>
+                  <% } %>
+              </p>
+              <a href="/users/dashboard/notes/<%= note.id %>" class="btn btn-primary">View</a>
+            </div>
           </div>
         </div>
-      </div>
-      <% }); %>
+        <% }); %>
     </div>
   </div>
 </div>

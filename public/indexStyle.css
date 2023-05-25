@@ -226,22 +226,13 @@ header {
   position: absolute;
   right: 0;
   top: 20px;
+  margin-right: 0;
   font-size: 12px;
   color: gray;
 }
 
 #sortingLabel {
   margin-bottom: 15px;
-}
-
-
-.edited-date {
-  position: absolute;
-  margin-left: 7px;
-  left: 0;
-  top: 20px;
-  font-size: 12px;
-  color: gray;
 }
 
 
