@@ -15,6 +15,7 @@ hiddenSections.forEach((el) => observer.observe(el));
 // theme-toggler
 const colorButtons = document.querySelectorAll(".color-button");
 const body = document.body;
+const links = document.querySelectorAll("a");
 
 function setCookie(name, value, days) {
   const expires = new Date();
@@ -45,6 +46,9 @@ colorButtons.forEach(function (button, index) {
     body.style.transition = "background-color 0.5s ease-in-out";
     body.style.backgroundColor = color;
     body.style.color = textColor;
+    links.forEach(function (link) {
+      link.style.color = textColor;
+    });
     setCookie("theme-color", color, 30); // Save color preference for 30 days
     setCookie("text-color", textColor, 30); // Save text color preference for 30 days
     colorButtons.forEach(function (button) {
@@ -65,6 +69,9 @@ const textColor = getCookie("text-color");
 if (themeColor && textColor) {
   body.style.backgroundColor = themeColor;
   body.style.color = textColor;
+  links.forEach(function (link) {
+    link.style.color = textColor;
+  });
   colorButtons.forEach(function (button) {
     if (
       getComputedStyle(button).getPropertyValue("background-color") ===
@@ -76,6 +83,7 @@ if (themeColor && textColor) {
     }
   });
 }
+
 
 // Fetch notes from the server and initialize Fuse object
 fetch("/users/dashboard/notes/search")
