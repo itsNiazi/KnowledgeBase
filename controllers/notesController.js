@@ -37,7 +37,7 @@ async function getUserNote(req, res) {
       `SELECT * FROM notes WHERE user_id = $1 ORDER BY id DESC`,
       [userId]
     );
-  
+
     res.render("pages/readNotes", {
       notes: notes.rows,
       truncateText,
@@ -111,7 +111,7 @@ async function deleteNote(req, res) {
       userId,
     ]);
     await pool.query("DELETE FROM notes WHERE id = $1", [noteId]);
-    await pool.query("")
+    await pool.query("");
     res.redirect("/users/dashboard/notes");
   } catch (err) {
     console.error(err);
@@ -153,6 +153,49 @@ async function updateNote(req, res) {
   }
 }
 
+async function searchNote(req, res) {
+  const userId = req.user.id;
+
+  pool.query(
+    `SELECT * FROM notes WHERE user_id = $1 ORDER BY title`,
+    [userId],
+    (error, result) => {
+      if (error) {
+        console.error("Error executing search query", error);
+        res.sendStatus(500);
+      } else {
+        const notes = result.rows;
+        res.send(notes);
+      }
+    }
+  );
+}
+
+async function searchServerNotes(req, res) {
+  try {
+    const result = await pool.query(
+      "SELECT id, title FROM notes WHERE user_id = $1",
+      [req.user.id]
+    );
+    const options = {
+      keys: ["title"],
+      threshold: 0.3,
+    };
+    const fuse = new Fuse(result.rows, options);
+    const searchResult = fuse.search(req.query.query);
+
+    const notesWithLinks = searchResult.map((note) => ({
+      id: note.item.id,
+      title: note.item.title,
+      link: `/users/dashboard/notes/${note.item.id}`,
+    }));
+
+    res.render("pages/search", { results: notesWithLinks });
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+}
 
 module.exports = {
   getNote,
@@ -163,4 +206,6 @@ module.exports = {
   editNote,
   updateNote,
   sortNotes,
+  searchNote,
+  searchServerNotes,
 };

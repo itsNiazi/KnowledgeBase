@@ -78,7 +78,7 @@ if (themeColor && textColor) {
 }
 
 // Fetch notes from the server and initialize Fuse object
-fetch("/search")
+fetch("/users/dashboard/notes/search")
   .then((response) => response.json())
   .then((notes) => {
     const fuse = new Fuse(notes, fuseOptions);
