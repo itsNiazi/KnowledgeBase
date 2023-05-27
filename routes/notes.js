@@ -1,9 +1,10 @@
+// Imports dependencies && modules
 const express = require("express");
 const router = express.Router();
 const notesController = require("../controllers/notesController");
 const { checkNotAuthenticated } = require("../controllers/authController");
-// const passport = require("passport");
 
+// Routes && functions
 router.get("/", checkNotAuthenticated, notesController.getUserNote);
 router.get("/add", checkNotAuthenticated, notesController.getNote);
 router.post("/add", notesController.postNote);

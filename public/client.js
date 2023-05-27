@@ -12,7 +12,7 @@ const observer = new IntersectionObserver((entries) => {
 const hiddenSections = document.querySelectorAll(".hidden");
 hiddenSections.forEach((el) => observer.observe(el));
 
-// theme-toggler//
+// theme-toggler
 const colorButtons = document.querySelectorAll(".color-button");
 const body = document.body;
 
@@ -82,7 +82,6 @@ fetch("/users/dashboard/notes/search")
   .then((response) => response.json())
   .then((notes) => {
     const fuse = new Fuse(notes, fuseOptions);
-    console.log(fuse);
 
     // Event listener for input change
     const searchInput = document.getElementById("searchInput");

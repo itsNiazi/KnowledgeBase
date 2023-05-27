@@ -1,5 +1,7 @@
+// Import modules
 const pool = require("../models/db");
 
+// Check && Update user achievements
 async function getUserAchievements(req, res, next) {
   try {
     const userId = req.user.id;
@@ -91,18 +93,21 @@ async function getUserAchievements(req, res, next) {
     }
 
     const achievementsWithProgress = achievements.map((achievement) => {
-      const progress = Math.round(achievementProgress(achievement.id, amount, diffDays));
+      const progress = Math.round(
+        achievementProgress(achievement.id, amount, diffDays)
+      );
       return { ...achievement, progress };
     });
 
     res.locals.achievements = achievementsWithProgress;
-    next()
+    next();
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
 }
 
+// Return className for user progress
 function getProgressColor(progress) {
   if (progress <= 25) {
     return "red";
@@ -138,10 +143,8 @@ function achievementProgress(achievementId, amount, diffDays) {
   }
 }
 
-
-
-module.exports = { 
+module.exports = {
   getUserAchievements,
   getProgressColor,
-  achievementProgress
+  achievementProgress,
 };

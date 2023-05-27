@@ -1,10 +1,13 @@
+// Imports dependecies && modules
 const pool = require("../models/db");
 const Fuse = require("fuse.js");
 
+// Add notes form page
 function getNote(req, res) {
   res.render("pages/notes");
 }
 
+// Submit notes form
 async function postNote(req, res) {
   try {
     const { title, category, content } = req.body;
@@ -25,6 +28,7 @@ async function postNote(req, res) {
   }
 }
 
+// Display notes
 async function getUserNote(req, res) {
   function truncateText(text, limit) {
     const truncated = text.substring(0, limit);
@@ -49,6 +53,7 @@ async function getUserNote(req, res) {
   }
 }
 
+// Sort notes
 async function sortNotes(req, res) {
   try {
     const userId = req.user.id;
@@ -85,6 +90,7 @@ async function sortNotes(req, res) {
   }
 }
 
+// View specific note
 async function getViewNote(req, res) {
   try {
     const noteId = req.params.id;
@@ -103,6 +109,7 @@ async function getViewNote(req, res) {
   }
 }
 
+// Delete specific note
 async function deleteNote(req, res) {
   try {
     const userId = req.user.id;
@@ -119,6 +126,7 @@ async function deleteNote(req, res) {
   }
 }
 
+// Edit note form page
 async function editNote(req, res) {
   try {
     const noteId = req.params.id;
@@ -133,6 +141,7 @@ async function editNote(req, res) {
   }
 }
 
+// Update edited note
 async function updateNote(req, res) {
   try {
     const noteId = req.params.id;
@@ -153,6 +162,7 @@ async function updateNote(req, res) {
   }
 }
 
+// Autocomplete fuzzy search
 async function searchNote(req, res) {
   const userId = req.user.id;
 
@@ -171,6 +181,7 @@ async function searchNote(req, res) {
   );
 }
 
+// Server rendered search results
 async function searchServerNotes(req, res) {
   try {
     const result = await pool.query(

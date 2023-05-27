@@ -1,7 +1,9 @@
+// Import Dependencies && Modules
 const LocalStrategy = require("passport-local").Strategy;
 const { Pool } = require("pg");
 const bcrypt = require("bcrypt");
 
+// Environment variables
 const pool = new Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
@@ -10,6 +12,7 @@ const pool = new Pool({
   port: process.env.PGPORT,
 });
 
+// User authentication
 function initialize(passport) {
   const authenticateUser = (username, password, done) => {
     pool.query(

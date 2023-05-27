@@ -1,8 +1,10 @@
+// Imports dependencies
 const { Pool } = require("pg");
 
 // Imports login credentials from .env
 require("dotenv").config();
 
+// Environment variables
 const pool = new Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
