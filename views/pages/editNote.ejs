@@ -1,12 +1,29 @@
-<form action="/users/dashboard/notes/<%= note.id %>/edit" method="POST">
-    <label for="title">Title:</label>
-    <input type="text" name="title" value="<%= note.title %>"  required ><br>
+<div class="container-card">
+  <div class="card-form note">
+    <form action="/users/dashboard/notes/<%= note.id %>/edit" method="POST">
+      <legend>Edit note</legend>
 
-    <label for="category">Category:</label>
-    <input type="text" name="category" value="<%= note.category %>"  required ><br>
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        name="title"
+        value="<%= note.title %>"
+        required
+      /><br />
 
-    <label for="content">Content:</label>
-    <textarea name="content"  required ><%= note.content %></textarea><br>
+      <label for="category">Category:</label>
+      <input
+        type="text"
+        name="category"
+        value="<%= note.category %>"
+        required
+      /><br />
 
-    <input type="submit" value="Save">
-</form>
+      <label for="content">Content:</label>
+      <textarea name="content" required><%= note.content %></textarea><br />
+
+      <input type="submit" value="Save" />
+    </form>
+    <div></div>
+  </div>
+</div>
