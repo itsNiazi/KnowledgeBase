@@ -235,7 +235,6 @@ header {
   margin-bottom: 15px;
 }
 
-
 fieldset {
   border: 0;
 }
@@ -375,7 +374,6 @@ a {
   height: auto;
 }
 
-
 .buttonContainer {
   display: flex;
   justify-content: space-between;
@@ -461,19 +459,19 @@ a {
 }
 
 .progress-bar.red {
-  background-color: #FF4136;
+  background-color: #ff4136;
 }
 
 .progress-bar.orange {
-  background-color: #FF851B;
+  background-color: #ff851b;
 }
 
 .progress-bar.yellow {
-  background-color: #FFDC00;
+  background-color: #ffdc00;
 }
 
 .progress-bar.green {
-  background-color: #2ECC40;
+  background-color: #2ecc40;
 }
 
 .progress-bar.red,
