@@ -100,7 +100,11 @@ async function getUserAchievements(req, res, next) {
     });
 
     res.locals.achievements = achievementsWithProgress;
-    next();
+    res.render("pages/achievements", { 
+      achievements: achievementsWithProgress, 
+      getProgressColor: getProgressColor 
+  });
+  
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");

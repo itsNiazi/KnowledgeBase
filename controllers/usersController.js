@@ -4,7 +4,6 @@ const passport = require("passport");
 const pool = require("../models/db");
 const fs = require("fs");
 const path = require("path");
-const achievementsController = require("./achievementsController");
 
 // Render register form page
 function getRegister(req, res) {
@@ -86,16 +85,16 @@ function getLogout(req, res) {
 
 // Render dashboard page
 async function getDashboard(req, res) {
-  res.render("pages/dashboard");
-}
-
-async function invokeGetImage(req, res) {
-  const achievements = res.locals.achievements;
-
   try {
-    await getImage(req, res, achievements);
+    const results = await getImage(req, res);
+    const { username, welcomeText, profileImage } = results;
+    res.render("pages/dashboard", {
+      user: username,
+      welcomeText,
+      profileImage,
+    });
   } catch (err) {
-    console.error(err);
+    console.log(err);
     res.status(500).send("Server Error");
   }
 }
@@ -124,12 +123,11 @@ async function getImage(req, res) {
     welcomeText = `You currently have ${amount} notes.`;
   }
 
-  res.render("pages/profile", {
-    user: req.user.username,
+  return {
+    username: req.user.username,
     welcomeText,
-    profileImage: imagePath,
-    getProgressColor: achievementsController.getProgressColor,
-  });
+    profileImage: imagePath
+  };
 }
 
 async function uploadImage(req, res) {
@@ -162,7 +160,7 @@ async function uploadImage(req, res) {
       userId,
     ]);
 
-    return res.redirect("profile");
+    return res.redirect("dashboard");
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error.");
@@ -187,7 +185,7 @@ async function deleteImage(req, res) {
       );
     }
 
-    return res.redirect("profile");
+    return res.redirect("dashboard");
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error.");
@@ -197,7 +195,6 @@ async function deleteImage(req, res) {
 module.exports = {
   getRegister,
   getLogin,
-  invokeGetImage,
   getImage,
   getLogout,
   getDashboard,

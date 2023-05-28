@@ -39,12 +39,12 @@ app.use(passport.session());
 const indexRoute = require("./routes/index");
 const usersRoute = require("./routes/users");
 const notesRoute = require("./routes/notes");
-const rewardsRoute = require("./routes/profile");
+const rewardsRoute = require("./routes/achievements");
 
 app.use("/", indexRoute);
 app.use("/users", usersRoute);
 app.use("/users/dashboard/notes", notesRoute);
-app.use("/users/profile", rewardsRoute);
+app.use("/users/dashboard/achievements", rewardsRoute);
 
 // 404 Page Not Found
 app.get("*", (req, res) => {

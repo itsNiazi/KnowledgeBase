@@ -11,7 +11,6 @@ router.get(
   "/",
   checkNotAuthenticated,
   achievementsController.getUserAchievements,
-  usersController.invokeGetImage,
   achievementsController.getProgressColor,
   achievementsController.achievementProgress
 );

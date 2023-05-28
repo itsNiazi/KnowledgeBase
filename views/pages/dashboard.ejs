@@ -1,3 +1,47 @@
 <div class="container">
-    <h1>Welcome to KnowledgeBase!</h1>
+    <div class="container">
+        <div class="userContainer">
+            <img id="userImage" src="<%= profileImage %>" alt="Profile Image">
+            <p class="userName">
+                <%= user.charAt(0).toUpperCase() + user.slice(1)%>
+            </p>
+            <div class="buttonContainer">
+                <button id="editPhotoButton">Edit profile photo</button>
+                <form id="editPhotoForm" action="/users/upload" method="POST" enctype="multipart/form-data">
+                    <input id="inputImage" type="file" name="avatar" accept="image/*">
+                    <button id="changePhoto" type="submit">Save</button>
+                </form>
+                <form id="deleteForm" action="/users/delete" method="POST">
+                    <button id="deleteButton">Delete photo</button>
+                </form>
+            </div>
+            <p id="welcomeText">
+                <%= welcomeText %>
+            </p>
+        </div>
+            <h2 id="testId1">Welcome to KnowledgeBase!</h2>
+
+            
+    </div>
+
+
+    <script>
+        const editPhotoButton = document.getElementById("editPhotoButton");
+        const editPhotoForm = document.getElementById("editPhotoForm");
+        const deleteForm = document.getElementById("deleteForm");
+        const buttonContainer = document.querySelector(".buttonContainer");
+
+        editPhotoButton.addEventListener("click", function () {
+            if (editPhotoForm.style.display === "block") {
+                editPhotoForm.style.display = "none";
+                buttonContainer.style.flexDirection = "row";
+                deleteForm.style.width = "";
+            } else {
+                editPhotoForm.style.display = "block";
+                buttonContainer.style.flexDirection = "column";
+                deleteButton.style.width = "100%";
+            }
+        });
+    </script>
+
 </div>
