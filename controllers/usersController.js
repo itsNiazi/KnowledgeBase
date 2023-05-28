@@ -86,18 +86,35 @@ function getLogout(req, res) {
 // Render dashboard page
 async function getDashboard(req, res) {
   try {
-    const results = await getImage(req, res);
-    const { username, welcomeText, profileImage } = results;
+    const { username, welcomeText, profileImage } = await getImage(req, res);
+    const { quoteText, quoteAuthor } = await getQuote(req, res);
+
     res.render("pages/dashboard", {
       user: username,
       welcomeText,
       profileImage,
+      quoteText,
+      quoteAuthor
     });
   } catch (err) {
     console.log(err);
     res.status(500).send("Server Error");
   }
 }
+
+async function getQuote(req, res) {
+  const randomNumber = Math.floor(Math.random() * 50) + 1;
+
+  const result = await pool.query("SELECT text, author FROM citations WHERE id = $1", [randomNumber]);
+  const quoteText = result.rows[0].text;
+  const quoteAuthor = result.rows[0].author;
+
+  return {
+    quoteText,
+    quoteAuthor,
+  };
+}
+
 
 async function getImage(req, res) {
   const userId = req.user.id;

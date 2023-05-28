@@ -484,6 +484,15 @@ textarea {
 }
 
 #testId1 {
-  margin-top: 100px;
   text-align: center;
 }
+
+.citations{
+  font-style: italic;
+  margin-top: 10px;
+  max-width: 60%;
+}
+
+.author{
+  float: right;
+} 
