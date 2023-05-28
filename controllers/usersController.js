@@ -166,8 +166,8 @@ async function uploadImage(req, res) {
     "avatars",
     randomFileNameWithExtension
   );
-
   try {
+    await deleteImage(req, res);
     fs.writeFileSync(filePath, fs.readFileSync(avatar.path));
     if (avatar.path) {
       fs.unlinkSync(avatar.path);
@@ -177,7 +177,7 @@ async function uploadImage(req, res) {
       userId,
     ]);
 
-    return res.redirect("dashboard");
+    return res.render("dashboard");
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error.");
