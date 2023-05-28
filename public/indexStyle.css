@@ -346,6 +346,13 @@ a {
 .container {
   display: flex;
   flex-direction: column;
+  /* align-items: center;
+  justify-content: center; */
+  margin-top: 3%;
+}
+.container-profile {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 3%;
