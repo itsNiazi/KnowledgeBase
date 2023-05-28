@@ -93,7 +93,6 @@ img {
   text-decoration: none;
 }
 
-
 body {
   font-family: "Poppins", monospace;
 }
@@ -336,8 +335,8 @@ input[type="password"] {
 
 a {
   color: white;
+  text-decoration: none;
 }
-
 
 .userName {
   font-size: 14pt;
