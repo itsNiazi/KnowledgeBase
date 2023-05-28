@@ -34,3 +34,9 @@ CREATE TABLE user_achievements (
     FOREIGN KEY (user_id) REFERENCES users (id),  
     FOREIGN KEY (achievement_id) REFERENCES achievements (id)
 );
+
+create table citations(
+id SERIAL PRIMARY KEY,
+text VARCHAR(255),
+author VARCHAR(255)
+);
