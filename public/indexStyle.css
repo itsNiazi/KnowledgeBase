@@ -336,6 +336,7 @@ input[type="password"] {
 
 a {
   color: white;
+  text-decoration: none;
 }
 
 .userName {
