@@ -153,16 +153,38 @@ header {
   padding: 10px 0;
 }
 
+.login-kb {
+  text-align: center;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.submit {
+  padding: 8.5px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: none;
+  font-weight: 400;
+  font-size:medium;
+  background-color: rgb(74, 74, 74);
+  color: white;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)
+}
+.submit:hover{
+  cursor: pointer;
+}
+
 .card-form {
-  background: rgba(255, 255, 255, 0.436);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   display: inline-block;
-  padding: 2rem;
-  height: 300px;
+  padding: 4rem;
+  height: 550px;
   width: 450px;
 }
 
@@ -217,15 +239,43 @@ fieldset {
   border: 0;
 }
 
-input[name="username"],
-input[type="password"] {
+.not-member {
   display: block;
-  margin-bottom: 10px;
+  padding: 6px;
+  margin-top: 10px;
+  border-radius: 4px;
+  background-color: rgb(74, 74, 74);
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+input[name="username"]{
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 25px;
   outline: none;
   border: none;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
 }
+
+input[type="password"] {
+  display: block;
+  margin-bottom: 25px;
+  outline: none;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.sign-today {
+  margin-top: 20px;
+  text-align: center;
+}
+
 
 .allAchievements {
   display: flex;

@@ -2,10 +2,10 @@
     <div class="card-form">
         <form action="/users/login" method="POST">
             <fieldset>
-                <legend>Sign In to KnowledgeBase</legend>
+                <legend class="login-kb">Sign In to KnowledgeBase</legend>
                 <input type="text" id="username" name="username" placeholder="Username" required>
                 <input type="password" id="password" class="space" name="password" placeholder="Password" required>
-                <input type="submit" value="Sign In">
+                <input class="submit" type="submit" value="Sign In">
             </fieldset>
         </form>
         <% if (messages.error && messages.error.length> 0) { %>
@@ -13,6 +13,8 @@
                 <%= messages.error[0] %>
             </div>
             <% } %>
-                <a href="/users/register">Not a member?</a>
+                <p>━━━━━━━━━━━━━━━━ Or ━━━━━━━━━━━━━━━━</p>
+                <p class="sign-today">Not a member? sign up today</p>
+                <a class="not-member" href="/users/register">Sign up</a>
     </div>
 </div>
