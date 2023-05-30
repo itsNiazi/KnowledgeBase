@@ -106,6 +106,19 @@ section {
   min-height: 100vh;
 }
 
+.edit-delete {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.delete-btn {
+  width: 100%;
+}
+
 .flex {
   display: flex;
   align-items: center;
@@ -170,11 +183,13 @@ header {
   font-weight: 400;
   font-size:medium;
   background-color: rgb(74, 74, 74);
-  color: white;
+  color: white !important;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)
 }
 .submit:hover{
   cursor: pointer;
+  background-color: rgb(47, 47, 47);
+  transition: ease-in 0.2s;
 }
 
 .card-form {
@@ -204,9 +219,27 @@ header {
   background-color: rgb(74, 74, 74);
   text-align: center;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  color: white;
+  color: white !important;
   width: 30%;
 }
+
+.save-note:hover {
+  background-color: rgb(47, 47, 47);
+  transition: ease-in 0.2s;  
+}
+
+.add-note {
+  padding: 6px;
+  margin-top: -5px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(74, 74, 74);
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: white !important;
+  width: 10%;
+}
+
 
 .card {
   display: flex;
@@ -251,6 +284,13 @@ header {
   margin-bottom: 15px;
 }
 
+#sortSelect {
+  border: none;
+  border-radius: 4px;
+  padding: 2px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
 
 
 .not-member {
@@ -261,7 +301,13 @@ header {
   background-color: rgb(74, 74, 74);
   text-align: center;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  color: white;
+  color: white !important;
+  
+}
+
+.not-member:hover {
+  background-color: rgb(47, 47, 47);
+  transition: ease-in 0.2s;
 }
 
 fieldset {
@@ -284,7 +330,7 @@ fieldset {
   margin-top: -25px;
 }
 
-#content {
+.content {
   background-color: rgba(255, 255, 255, 0.71) ;
   outline: solid 1px rgb(255, 255, 255);
   margin-bottom: 0px;
