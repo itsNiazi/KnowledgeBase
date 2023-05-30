@@ -94,6 +94,8 @@ img {
   position: absolute;
   z-index: 1;
   border-radius: 20px;
+  right: 0;
+  margin-right: -40px;
 }
 
 .dropdown:hover .dropdown-menu {
