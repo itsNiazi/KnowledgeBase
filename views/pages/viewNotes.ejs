@@ -9,7 +9,7 @@
         <%= note.content %>
       </p>
       <div class="edit-delete">
-        <a class="save-note" href="/users/dashboard/notes/<%= note.id %>/edit" class="btn btn-secondary">Edit</a>
+        <a class="edit-note" href="/users/dashboard/notes/<%= note.id %>/edit" class="btn btn-secondary">Edit</a>
         <form class="delete-btn" method="POST" action="/users/dashboard/notes/<%= note.id %>">
           <input class="save-note" type="submit" value="Delete" />
       </div>

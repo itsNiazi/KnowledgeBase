@@ -108,15 +108,29 @@ section {
 
 .edit-delete {
   text-align: center;
-  display: flex;
-  flex-direction: row;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
   width: 100%;
   margin-top: 30px;
 }
 
 .delete-btn {
   width: 100%;
+  text-align: left;
+}
+
+.edit-note {
+  padding: 6px;
+  margin-top: -5px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(74, 74, 74);
+  text-align: center;
+  justify-self: right;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: white !important;
+  width: 30%;
 }
 
 .flex {
@@ -124,6 +138,7 @@ section {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  font-size: large;
 }
 
 .hidden {
@@ -201,13 +216,13 @@ header {
   border: 1px solid rgba(255, 255, 255, 0.3);
   display: inline-block;
   padding: 4rem;
-  height: 550px;
+  min-height: 550px;
   width: 450px;
 }
 
 .card-form.note {
   padding: 70px;
-  height: 680px;
+  min-height: 680px;
   width: 50%;
 }
 
@@ -231,6 +246,7 @@ header {
 .add-note {
   padding: 6px;
   margin-top: -5px;
+  margin-bottom: 20px;
   border: none;
   border-radius: 4px;
   background-color: rgb(74, 74, 74);
@@ -281,7 +297,7 @@ header {
 }
 
 #sortingLabel {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 #sortSelect {
@@ -330,6 +346,10 @@ fieldset {
   margin-top: -25px;
 }
 
+.or-center {
+  text-align: center;
+}
+
 .content {
   background-color: rgba(255, 255, 255, 0.71) ;
   outline: solid 1px rgb(255, 255, 255);
@@ -339,7 +359,9 @@ fieldset {
   padding: 10px;
   border-radius: 4px;
   width: 100%;
-  height: 350px;
+  max-height: 450px;
+  overflow-y: auto;
+  color: black !important;
 }
 
 input[name="username"]{
