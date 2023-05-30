@@ -13,16 +13,15 @@ const hiddenSections = document.querySelectorAll(".hidden");
 hiddenSections.forEach((el) => observer.observe(el));
 
 // theme-toggler
-const colorButtons = document.querySelectorAll(".color-button");
-const body = document.body;
 const links = document.querySelectorAll("a");
-
+const svgs = document.querySelectorAll("svg");
+ 
 function setCookie(name, value, days) {
   const expires = new Date();
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
   document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
 }
-
+ 
 function getCookie(name) {
   const cookieName = `${name}=`;
   const cookies = document.cookie.split(";");
@@ -37,7 +36,10 @@ function getCookie(name) {
   }
   return null;
 }
-
+ 
+const colorButtons = document.querySelectorAll(".color-button");
+const body = document.body;
+ 
 colorButtons.forEach(function (button, index) {
   button.style.backgroundColor = `var(--color-${index + 1})`;
   button.addEventListener("click", function () {
@@ -48,6 +50,9 @@ colorButtons.forEach(function (button, index) {
     body.style.color = textColor;
     links.forEach(function (link) {
       link.style.color = textColor;
+    });
+    svgs.forEach(function (svg) {
+      svg.style.fill = textColor;
     });
     setCookie("theme-color", color, 30); // Save color preference for 30 days
     setCookie("text-color", textColor, 30); // Save text color preference for 30 days
@@ -62,15 +67,18 @@ colorButtons.forEach(function (button, index) {
     });
   });
 });
-
+ 
 const themeColor = getCookie("theme-color");
 const textColor = getCookie("text-color");
-
+ 
 if (themeColor && textColor) {
   body.style.backgroundColor = themeColor;
   body.style.color = textColor;
   links.forEach(function (link) {
     link.style.color = textColor;
+  });
+  svgs.forEach(function (svg) {
+    svg.style.fill = textColor;
   });
   colorButtons.forEach(function (button) {
     if (
@@ -83,6 +91,7 @@ if (themeColor && textColor) {
     }
   });
 }
+
 
 
 // Fetch notes from the server and initialize Fuse object

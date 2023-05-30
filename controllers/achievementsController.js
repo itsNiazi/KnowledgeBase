@@ -96,7 +96,11 @@ async function getUserAchievements(req, res, next) {
       const progress = Math.round(
         achievementProgress(achievement.id, amount, diffDays)
       );
-      return { ...achievement, progress };
+      if (userAchievementIds.includes(achievement.id)) {
+        return { ...achievement, progress: 100 };
+      } else {
+        return { ...achievement, progress };
+      }
     });
 
     res.locals.achievements = achievementsWithProgress;

@@ -104,11 +104,38 @@ section {
   min-height: 100vh;
 }
 
+.edit-delete {
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.delete-btn {
+  width: 100%;
+  text-align: left;
+}
+
+.edit-note {
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(74, 74, 74);
+  text-align: center;
+  justify-self: right;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: white !important;
+  width: 30%;
+}
+
 .flex {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  font-size: large;
 }
 
 .hidden {
@@ -153,21 +180,78 @@ header {
   padding: 10px 0;
 }
 
+.login-kb {
+  text-align: center;
+}
+
+.or-line {
+  min-width: 320px;
+}
+
+.submit {
+  padding: 8.5px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: none;
+  font-weight: 400;
+  font-size: medium;
+  background-color: rgb(74, 74, 74);
+  color: white !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+.submit:hover {
+  cursor: pointer;
+  background-color: rgb(47, 47, 47);
+  transition: ease-in 0.2s;
+}
+
 .card-form {
-  background: rgba(255, 255, 255, 0.436);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   display: inline-block;
-  padding: 2rem;
-  height: 300px;
+  padding: 4rem;
+  min-height: 550px;
   width: 450px;
 }
 
 .card-form.note {
-  height: 600px;
+  padding: 70px;
+  min-height: 680px;
+  width: 50%;
+}
+
+.save-note {
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(74, 74, 74);
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: white !important;
+  width: 30%;
+}
+
+.save-note:hover {
+  background-color: rgb(47, 47, 47);
+  transition: ease-in 0.2s;
+}
+
+.add-note {
+  padding: 6px;
+  margin-top: -5px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(74, 74, 74);
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: white !important;
+  width: 10%;
 }
 
 .card {
@@ -210,21 +294,123 @@ header {
 }
 
 #sortingLabel {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+}
+
+#sortSelect {
+  border: none;
+  border-radius: 4px;
+  padding: 2px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.not-member {
+  display: block;
+  padding: 6px;
+  margin-top: 10px;
+  border-radius: 4px;
+  background-color: rgb(74, 74, 74);
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: white !important;
+}
+
+.not-member:hover {
+  background-color: rgb(47, 47, 47);
+  transition: ease-in 0.2s;
 }
 
 fieldset {
   border: 0;
 }
 
-input[name="username"],
-input[type="password"] {
+.centered-fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.item-container {
   display: block;
-  margin-bottom: 10px;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: -25px;
+}
+
+.or-line {
+  text-align: center;
+}
+
+.or-center {
+  font-family: Courier, monospace;
+}
+
+.content {
+  background-color: rgba(255, 255, 255, 0.71);
+  outline: solid 1px rgb(255, 255, 255);
+  margin-bottom: 20px;
+  outline: solid 1px rgb(255, 255, 255);
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  max-height: 450px;
+  min-height: 250px;
+  overflow-y: auto;
+  color: black !important;
+}
+
+input[name="username"] {
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 25px;
   outline: none;
   border: none;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+input[name="title"] {
+  background-color: rgba(255, 255, 255, 0.71);
+  margin-top: 35px;
+  margin-bottom: 15px;
+  outline: solid 1px rgb(255, 255, 255);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+input[name="category"] {
+  background-color: rgba(255, 255, 255, 0.71);
+  margin-top: 5px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  outline: solid 1px rgb(255, 255, 255);
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+input[type="password"] {
+  display: block;
+  margin-bottom: 25px;
+  outline: none;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.sign-today {
+  margin-top: 20px;
+  text-align: center;
 }
 
 .allAchievements {
@@ -236,6 +422,14 @@ input[type="password"] {
   margin: 0%;
   text-align: center;
   left: 0;
+  margin-bottom: 2%;
+}
+
+.achievement-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
 }
 
 #achievements {
@@ -487,18 +681,31 @@ textarea {
   text-align: center;
 }
 
-.citations{
+.citations {
   font-style: italic;
   margin-top: 10px;
   max-width: 60%;
 }
 
-.author{
+.author {
   float: right;
-} 
+}
 
-#registrationButton{
+#registrationButton {
   margin-top: 10px;
   font-size: 18px;
-  font-weight:bold;
+  font-weight: bold;
+}
+.index-signup {
+  color: rgb(0, 0, 0);
+  background: rgb(181, 182, 231);
+  padding: 8px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .flex {
+    flex-direction: column;
+  }
 }

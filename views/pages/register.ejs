@@ -1,24 +1,40 @@
 <div class="container-card">
-    <div class="card-form">
-        <form action="/users/register" method="POST">
-            <fieldset>
-                <legend>Register an account</legend>
-                <input type="text" id="username" name="username" placeholder="Username" required>
-                <input type="password" id="password" class="space" name="password" placeholder="Password" required>
-                <input type="password" id="password2" name="password2" placeholder="Confirm password" required>
-                <input type="submit" value="Sign Up">
-            </fieldset>
-        </form>
-        <ul>
-            <% if (typeof errors !=='undefined' ) { %>
-                <% errors.forEach(error=> { %>
-                    <li>
-                        <%= error.message %>
-                    </li>
-                    <% }); %>
-                        <% } %>
-        </ul>
-
-        <a href="/users/login">Already signed up?</a>
-    </div>
+  <div class="card-form">
+    <form action="/users/register" method="POST">
+      <fieldset>
+        <legend class="login-kb">Register an account</legend>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Username"
+          required
+        />
+        <input
+          type="password"
+          id="password"
+          class="space"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <input
+          type="password"
+          id="password2"
+          name="password2"
+          placeholder="Confirm password"
+          required
+        />
+        <input class="submit" type="submit" value="Sign Up" />
+      </fieldset>
+    </form>
+    <ul>
+      <% if (typeof errors !=='undefined' ) { %> <% errors.forEach(error=> { %>
+      <li><%= error.message %></li>
+      <% }); %> <% } %>
+    </ul>
+    <hr />
+    <p class="sign-today">Already a member?</p>
+    <a class="not-member" href="/users/login">Sign in</a>
+  </div>
 </div>
