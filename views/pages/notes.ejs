@@ -1,35 +1,15 @@
 <div class="container-card">
   <div class="card-form note">
     <form action="/users/dashboard/notes/add" method="POST">
-      <fieldset>
-        <legend>Write note</legend>
-        <label for="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder="Title"
-          required
-        /><br />
-        <label for="category">Category:</label>
-        <input
-          type="text"
-          id="category"
-          name="category"
-          placeholder="Category"
-          required
-        /><br />
-        <label for="content">Content:</label>
-        <textarea
-          id="content"
-          name="content"
-          cols="30"
-          rows="10"
-          placeholder="Write here"
-          required
-        ></textarea
-        ><br />
-        <input type="submit" value="Submit" />
+      <fieldset class="centered-fieldset">
+        <legend class="login-kb">Write note</legend>
+        <div class="item-container">
+          <input type="text" id="title" name="title" placeholder="Title" required />
+          <input type="text" id="category" name="category" placeholder="Category" required />
+        </div>
+        <textarea id="content" name="content" cols="30" rows="10" placeholder="Write here" required></textarea>
+        <br />
+        <input class="save-note" type="submit" value="Save note" />
       </fieldset>
     </form>
   </div>
