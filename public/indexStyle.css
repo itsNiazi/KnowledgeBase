@@ -115,6 +115,7 @@ section {
 }
 
 .card-title {
+  padding: 5px;
   text-align: center;
   background-color: rgb(167, 167, 167);
   border-radius: 10px 10px 0 0px;
