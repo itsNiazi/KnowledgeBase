@@ -449,6 +449,14 @@ input[type="password"] {
   margin: 0%;
   text-align: center;
   left: 0;
+  margin-bottom: 2%;
+}
+
+.achievement-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
 }
 
 #achievements {
