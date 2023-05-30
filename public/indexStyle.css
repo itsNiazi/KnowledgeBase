@@ -185,8 +185,11 @@ header {
 
 .login-kb {
   text-align: center;
-  font-size: x-large;
-  font-weight: bold;
+}
+
+.or-line {
+  min-width: 320px;
+
 }
 
 .submit {
