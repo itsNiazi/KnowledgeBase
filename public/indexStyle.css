@@ -704,6 +704,11 @@ textarea {
   margin-top: 10px;
 }
 
+.error-handling {
+  text-align: center;
+  color: #882032;
+}
+
 @media (max-width: 600px) {
   .flex {
     flex-direction: column;

@@ -6,21 +6,25 @@
 <section class="hidden">
   <div class="allAchievements">
     <% achievements.forEach(achievement => { %>
-      <figure id="achievements">
-        <div class="achievement-image-container">
-          <img class="achievement-image <%= achievement.className %>" src="/images/<%= achievement.image_url %>"
-            title="<%= achievement.description %>">
-        </div>
-        <div class="progress-bar-container">
-          <div class="progress-bar green" title="<%= achievement.requirement %>"></div>
-          <p title="<%= achievement.requirement %>">
-            <%= achievement.progress %>%
-          </p>
-        </div>
-        <figcaption id="achievementName">
-          <%= achievement.name %>
-        </figcaption>
-      </figure>
+    <figure id="achievements">
+      <div class="achievement-image-container">
+        <img
+          class="achievement-image <%= achievement.className %>"
+          src="/images/<%= achievement.image_url %>"
+          title="<%= achievement.description %>"
+        />
+      </div>
+      <div class="progress-bar-container">
+        <div
+          class="progress-bar green"
+          title="<%= achievement.requirement %>"
+        ></div>
+        <p title="<%= achievement.requirement %>">
+          <%= achievement.progress %>%
+        </p>
+      </div>
+      <figcaption id="achievementName"><%= achievement.name %></figcaption>
+    </figure>
     <% }); %>
   </div>
   <p>Earn achievement for writing notes and loyalty</p>
@@ -41,12 +45,3 @@
   </h2>
   <a class="index-signup" href="/users/register">Sign up today!</a>
 </section>
-<!-- <section class="hidden">
-  <img src="images/undraw_2.svg" />
-  <h1>Hello World</h1>
-  <p>This is a test</p>
-</section>
-<section class="hidden">
-  <h1>Hello World</h1>
-  <p>This is a test</p>
-</section> -->
