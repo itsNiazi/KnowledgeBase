@@ -20,7 +20,7 @@ img {
 }
 
 :root {
-  --color-3: #ff6161;
+  --color-3: #fb6767;
   --color-4: #6060f7;
   --color-5: #7acd7a;
   --color-6: #ffa500;
@@ -104,6 +104,20 @@ section {
   place-items: center;
   align-content: center;
   min-height: 100vh;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.card-text {
+  padding: 5px;
+}
+
+.card-title {
+  text-align: center;
+  background-color: rgb(167, 167, 167);
+  border-radius: 10px 10px 0 0px;
 }
 
 .edit-delete {
@@ -223,8 +237,11 @@ header {
   width: 450px;
 }
 
+
 .card-form.note {
   padding: 70px;
+  padding-left: 60px;
+  padding-right: 60px;
   min-height: 680px;
   width: 50%;
 }
@@ -266,6 +283,8 @@ header {
   justify-content: space-between;
   color: black;
   height: 180px;
+  border: none;
+  border-radius: 10px;
 }
 
 .btn.btn-primary {
