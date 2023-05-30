@@ -688,3 +688,9 @@ textarea {
   font-size: 18px;
   font-weight: bold;
 }
+
+@media (max-width: 600px) {
+  .flex {
+    flex-direction: column;
+  }
+}
