@@ -1,6 +1,6 @@
 <div class="container">
 
-  <a  class="add-note" href="/users/dashboard/notes/add">Add note</a>
+  <a class="add-note" href="/users/dashboard/notes/add">Add note</a>
   <form action="/users/dashboard/notes/sort" method="GET">
     <label id="sortingLabel" for="sortSelect">Sort by:</label>
     <select name="sortBy" id="sortSelect" onchange="this.form.submit()">
@@ -26,11 +26,14 @@
               </p>
               <p class="card-date">
                 <span>Created: <%= note.created.toISOString().split('T')[0] %></span>
-                <% if (note.updated > note.created) { %>
+                <% if (note.updated> note.created) { %>
                   <span class="edited-date">Edited: <%= note.updated.toISOString().split('T')[0] %></span>
                   <% } %>
               </p>
               <a href="/users/dashboard/notes/<%= note.id %>" class="btn btn-primary">View</a>
+              <form class="delete-btn" method="POST" action="/users/dashboard/notes/<%= note.id %>"
+                onsubmit="return confirmDelete()">
+              </form>
             </div>
           </div>
         </div>
