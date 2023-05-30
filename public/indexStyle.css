@@ -245,6 +245,7 @@ header {
   padding: 6px;
   margin-top: -5px;
   margin-bottom: 20px;
+  margin-left: 10px;
   border: none;
   border-radius: 4px;
   background-color: rgb(74, 74, 74);
@@ -295,6 +296,7 @@ header {
 
 #sortingLabel {
   margin-bottom: 5px;
+  margin-left: 10px;
 }
 
 #sortSelect {
@@ -302,6 +304,7 @@ header {
   border-radius: 4px;
   padding: 2px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
 }
 
 .not-member {
