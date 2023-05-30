@@ -383,12 +383,15 @@ fieldset {
   padding: 10px;
   border-radius: 4px;
   width: 100%;
+
   max-height: 450px;
   min-height: 250px;
   overflow-y: auto;
   color: black !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
   overflow-x: hidden;
+  word-wrap: break-word;
+  /* white-space: wrap;  */
 }
 
 input[name="username"] {
