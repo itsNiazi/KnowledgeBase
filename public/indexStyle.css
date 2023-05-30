@@ -57,8 +57,6 @@ img {
   color: var(--color-1);
 }
 
-
-
 #green {
   background-color: var(--color-5);
   color: var(--color-2);
@@ -104,21 +102,6 @@ section {
   place-items: center;
   align-content: center;
   min-height: 100vh;
-}
-
-.card-body {
-  padding: 0;
-}
-
-.card-text {
-  padding: 5px;
-}
-
-.card-title {
-  padding: 5px;
-  text-align: center;
-  background-color: rgb(167, 167, 167);
-  border-radius: 10px 10px 0 0px;
 }
 
 .edit-delete {
@@ -204,7 +187,6 @@ header {
 
 .or-line {
   min-width: 320px;
-
 }
 
 .submit {
@@ -214,12 +196,12 @@ header {
   border-radius: 4px;
   border: none;
   font-weight: 400;
-  font-size:medium;
+  font-size: medium;
   background-color: rgb(74, 74, 74);
   color: white !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
-.submit:hover{
+.submit:hover {
   cursor: pointer;
   background-color: rgb(47, 47, 47);
   transition: ease-in 0.2s;
@@ -238,11 +220,8 @@ header {
   width: 450px;
 }
 
-
 .card-form.note {
   padding: 70px;
-  padding-left: 60px;
-  padding-right: 60px;
   min-height: 680px;
   width: 50%;
 }
@@ -261,7 +240,7 @@ header {
 
 .save-note:hover {
   background-color: rgb(47, 47, 47);
-  transition: ease-in 0.2s;  
+  transition: ease-in 0.2s;
 }
 
 .add-note {
@@ -277,15 +256,12 @@ header {
   width: 10%;
 }
 
-
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   color: black;
   height: 180px;
-  border: none;
-  border-radius: 10px;
 }
 
 .btn.btn-primary {
@@ -330,8 +306,6 @@ header {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-
-
 .not-member {
   display: block;
   padding: 6px;
@@ -341,7 +315,6 @@ header {
   text-align: center;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   color: white !important;
-  
 }
 
 .not-member:hover {
@@ -374,7 +347,7 @@ fieldset {
 }
 
 .content {
-  background-color: rgba(255, 255, 255, 0.71) ;
+  background-color: rgba(255, 255, 255, 0.71);
   outline: solid 1px rgb(255, 255, 255);
   margin-bottom: 0px;
   outline: solid 1px rgb(255, 255, 255);
@@ -387,7 +360,7 @@ fieldset {
   color: black !important;
 }
 
-input[name="username"]{
+input[name="username"] {
   display: block;
   margin-top: 40px;
   margin-bottom: 25px;
@@ -398,8 +371,8 @@ input[name="username"]{
   width: 100%;
 }
 
-input[name="title"]{
-  background-color: rgba(255, 255, 255, 0.71) ;
+input[name="title"] {
+  background-color: rgba(255, 255, 255, 0.71);
   margin-top: 35px;
   margin-bottom: 15px;
   outline: solid 1px rgb(255, 255, 255);
@@ -410,8 +383,8 @@ input[name="title"]{
   width: 100%;
 }
 
-input[name="category"]{
-  background-color: rgba(255, 255, 255, 0.71) ;
+input[name="category"] {
+  background-color: rgba(255, 255, 255, 0.71);
   margin-top: 5px;
   margin-bottom: 25px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
@@ -436,7 +409,6 @@ input[type="password"] {
   margin-top: 20px;
   text-align: center;
 }
-
 
 .allAchievements {
   display: flex;
@@ -698,18 +670,18 @@ textarea {
   text-align: center;
 }
 
-.citations{
+.citations {
   font-style: italic;
   margin-top: 10px;
   max-width: 60%;
 }
 
-.author{
+.author {
   float: right;
-} 
+}
 
-#registrationButton{
+#registrationButton {
   margin-top: 10px;
   font-size: 18px;
-  font-weight:bold;
+  font-weight: bold;
 }
