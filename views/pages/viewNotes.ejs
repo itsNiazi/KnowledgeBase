@@ -4,13 +4,13 @@
       <legend class="login-kb">
         <%= note.title %>
       </legend>
-
-      <p class="content">
-        <%= note.content %>
-      </p>
+<div class="content"> <p>
+  <%= note.content %>
+</p></div>
+     
       <div class="edit-delete">
         <a class="edit-note" href="/users/dashboard/notes/<%= note.id %>/edit" class="btn btn-secondary">Edit</a>
-        <form class="delete-btn" method="POST" action="/users/dashboard/notes/<%= note.id %>">
+        <form class="delete-btn" method="POST" action="/users/dashboard/notes/<%= note.id %>"onsubmit="return confirmDelete()">
           <input class="save-note" type="submit" value="Delete" />
       </div>
       </form>

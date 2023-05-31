@@ -23,19 +23,32 @@ img {
   --color-3: #ff6161;
   --color-4: #6060f7;
   --color-5: #7acd7a;
-  --color-6: #ffa500;
-  --color-7: #8d5b8d;
+  --color-6: #e5af0c;
+  --color-7: #ad20bc;
   --color-2: #181818;
   --color-1: #e8e8e8;
+  --color-8: #460394;
+  --color-9: #f5f5dc;
 }
 
 .color-button {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: none;
-  margin-right: 10px;
+  border: solid 1px black;
+  margin-left: 10px;
+  margin-right: 9px;
   cursor: pointer;
+}
+
+#beige {
+  background-color: var(--color-9);
+  color: var(--color-2);
+}
+
+#purple {
+  background-color: var(--color-8);
+  color: var(--color-1);
 }
 
 #white {
@@ -67,7 +80,7 @@ img {
   color: var(--color-2);
 }
 
-#purple {
+#pink {
   background-color: var(--color-7);
   color: var(--color-1);
 }
@@ -80,6 +93,9 @@ img {
   display: none;
   position: absolute;
   z-index: 1;
+  border-radius: 20px;
+  right: 0;
+  margin-right: -40px;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -245,6 +261,7 @@ header {
   padding: 6px;
   margin-top: -5px;
   margin-bottom: 20px;
+  margin-left: 10px;
   border: none;
   border-radius: 4px;
   background-color: rgb(74, 74, 74);
@@ -252,6 +269,16 @@ header {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   color: white !important;
   width: 10%;
+}
+
+.view-delete {
+  border: none;
+  background-color: rgb(244, 82, 82);
+  padding: 7px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 10px;
+  left: 90px;
 }
 
 .card {
@@ -295,6 +322,7 @@ header {
 
 #sortingLabel {
   margin-bottom: 5px;
+  margin-left: 10px;
 }
 
 #sortSelect {
@@ -302,6 +330,7 @@ header {
   border-radius: 4px;
   padding: 2px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
 }
 
 .not-member {
@@ -361,6 +390,10 @@ fieldset {
   min-height: 250px;
   overflow-y: auto;
   color: black !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  overflow-x: hidden;
+  word-wrap: break-word;
+  /* white-space: wrap;  */
 }
 
 input[name="username"] {
@@ -372,6 +405,7 @@ input[name="username"] {
   padding: 10px;
   border-radius: 4px;
   width: 100%;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.117);
 }
 
 input[name="title"] {
@@ -406,6 +440,7 @@ input[type="password"] {
   padding: 10px;
   border-radius: 4px;
   width: 100%;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.117);
 }
 
 .sign-today {
@@ -617,10 +652,10 @@ a {
   width: 100%;
   height: 25px;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.394);
   position: relative;
   margin-top: 15px;
-  border-radius: 20px;
+  border-radius: 5px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -702,6 +737,11 @@ textarea {
   padding: 8px;
   border-radius: 10px;
   margin-top: 10px;
+}
+
+.error-handling {
+  text-align: center;
+  color: #882032;
 }
 
 @media (max-width: 600px) {

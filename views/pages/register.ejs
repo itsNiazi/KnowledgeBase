@@ -30,7 +30,7 @@
     </form>
     <ul>
       <% if (typeof errors !=='undefined' ) { %> <% errors.forEach(error=> { %>
-      <li><%= error.message %></li>
+      <li class="error-handling"><%= error.message %></li>
       <% }); %> <% } %>
     </ul>
     <hr />

@@ -136,3 +136,8 @@ function renderSearchResults(results) {
     searchResults.appendChild(li);
   }
 }
+
+//gives a pop-up before you delete a note//
+function confirmDelete() {
+  return confirm("Are you sure you want to delete this note?");
+}
