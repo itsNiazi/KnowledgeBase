@@ -5,7 +5,8 @@ CREATE TABLE users (
     UNIQUE (username),
     amount int DEFAULT 0,
     dateJoined TIMESTAMP,
-    profileImage VARCHAR(255) DEFAULT 'profile.png'
+    profileImage VARCHAR(255) DEFAULT 'profile.png',
+    totalAmount int DEFAULT 0
 );
 
 CREATE TABLE notes (

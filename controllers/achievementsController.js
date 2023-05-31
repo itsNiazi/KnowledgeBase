@@ -6,29 +6,29 @@ async function getUserAchievements(req, res, next) {
   try {
     const userId = req.user.id;
     const user_amount = await pool.query(
-      "SELECT amount FROM users WHERE id = $1",
+      "SELECT totalamount FROM users WHERE id = $1",
       [userId]
     );
-    const amount = user_amount.rows[0].amount;
-    if (amount >= 1) {
+    const totalamount = user_amount.rows[0].totalamount;
+    if (totalamount >= 1) {
       await pool.query(
         "INSERT into user_achievements (user_id, achievement_id) SELECT $1, 1 WHERE NOT EXISTS(SELECT 1 FROM user_achievements WHERE user_id = $1 AND achievement_id = 1)",
         [userId]
       );
     }
-    if (amount >= 5) {
+    if (totalamount >= 5) {
       await pool.query(
         "INSERT into user_achievements (user_id, achievement_id) SELECT $1, 2 WHERE NOT EXISTS(SELECT 2 FROM user_achievements WHERE user_id = $1 AND achievement_id = 2)",
         [userId]
       );
     }
-    if (amount >= 10) {
+    if (totalamount >= 10) {
       await pool.query(
         "INSERT into user_achievements (user_id, achievement_id) SELECT $1, 3 WHERE NOT EXISTS(SELECT 3 FROM user_achievements WHERE user_id = $1 AND achievement_id = 3)",
         [userId]
       );
     }
-    if (amount >= 25) {
+    if (totalamount >= 25) {
       await pool.query(
         "INSERT into user_achievements (user_id, achievement_id) SELECT $1, 4 WHERE NOT EXISTS(SELECT 4 FROM user_achievements WHERE user_id = $1 AND achievement_id = 4)",
         [userId]
@@ -94,7 +94,7 @@ async function getUserAchievements(req, res, next) {
 
     const achievementsWithProgress = achievements.map((achievement) => {
       const progress = Math.round(
-        achievementProgress(achievement.id, amount, diffDays)
+        achievementProgress(achievement.id, totalamount, diffDays)
       );
       if (userAchievementIds.includes(achievement.id)) {
         return { ...achievement, progress: 100 };
@@ -128,16 +128,16 @@ function getProgressColor(progress) {
   }
 }
 
-function achievementProgress(achievementId, amount, diffDays) {
+function achievementProgress(achievementId, totalamount, diffDays) {
   switch (achievementId) {
     case 1:
-      return Math.min((amount / 1) * 100, 100);
+      return Math.min((totalamount / 1) * 100, 100);
     case 2:
-      return Math.min((amount / 5) * 100, 100);
+      return Math.min((totalamount / 5) * 100, 100);
     case 3:
-      return Math.min((amount / 10) * 100, 100);
+      return Math.min((totalamount / 10) * 100, 100);
     case 4:
-      return Math.min((amount / 25) * 100, 100);
+      return Math.min((totalamount / 25) * 100, 100);
     case 5:
       return Math.min((diffDays / 1) * 100, 100);
     case 6:

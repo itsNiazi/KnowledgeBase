@@ -21,6 +21,9 @@ async function postNote(req, res) {
     await pool.query("UPDATE users SET amount = amount + 1 WHERE id = $1", [
       userId,
     ]);
+    await pool.query("UPDATE users SET totalamount = totalamount + 1 WHERE id = $1", [
+      userId,
+    ]);
     res.redirect("/users/dashboard/notes");
   } catch (err) {
     console.error(err);
