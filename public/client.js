@@ -141,3 +141,9 @@ function renderSearchResults(results) {
 function confirmDelete() {
   return confirm("Are you sure you want to delete this note?");
 }
+
+function confirmLogout() {
+  return confirm("Are you sure you want to log out?");
+}
+
+
