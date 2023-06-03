@@ -128,10 +128,11 @@ function getProgressColor(progress) {
   }
 }
 
+// Return achievement progress
 function achievementProgress(achievementId, totalamount, diffDays) {
   switch (achievementId) {
     case 1:
-      return Math.min((totalamount / 1) * 100, 100);
+      return Math.min(totalamount * 100, 100);
     case 2:
       return Math.min((totalamount / 5) * 100, 100);
     case 3:
@@ -139,15 +140,13 @@ function achievementProgress(achievementId, totalamount, diffDays) {
     case 4:
       return Math.min((totalamount / 25) * 100, 100);
     case 5:
-      return Math.min((diffDays / 1) * 100, 100);
+      return Math.min(diffDays * 100, 100);
     case 6:
       return Math.min((diffDays / 7) * 100, 100);
     case 7:
       return Math.min((diffDays / 30) * 100, 100);
     case 8:
       return Math.min((diffDays / 90) * 100, 100);
-    default:
-      return 0;
   }
 }
 

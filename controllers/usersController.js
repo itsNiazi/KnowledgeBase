@@ -102,6 +102,7 @@ async function getDashboard(req, res) {
   }
 }
 
+// Return random quote
 async function getQuote(req, res) {
   const randomNumber = Math.floor(Math.random() * 50) + 1;
 
@@ -115,7 +116,7 @@ async function getQuote(req, res) {
   };
 }
 
-
+// Return user's image
 async function getImage(req, res) {
   const userId = req.user.id;
   const result = await pool.query(
@@ -147,6 +148,7 @@ async function getImage(req, res) {
   };
 }
 
+// Update user's image
 async function uploadImage(req, res) {
   const userId = req.user.id;
   const avatar = req.file;
@@ -184,6 +186,7 @@ async function uploadImage(req, res) {
   }
 }
 
+// Delete user's image
 async function deleteImage(req, res) {
   const userId = req.user.id;
   const result = await pool.query(
