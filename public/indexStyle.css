@@ -748,4 +748,17 @@ textarea {
   .flex {
     flex-direction: column;
   }
+  .allAchievements {
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#achievements {
+  padding-bottom: 40px;
+  flex: 0 0 calc(50% - 6%);
+}
+
+.add-note{
+  width: 178px;
+}
 }
