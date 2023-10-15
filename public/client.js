@@ -15,13 +15,13 @@ hiddenSections.forEach((el) => observer.observe(el));
 // theme-toggler
 const links = document.querySelectorAll("a");
 const svgs = document.querySelectorAll("svg");
- 
+
 function setCookie(name, value, days) {
   const expires = new Date();
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
   document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
 }
- 
+
 function getCookie(name) {
   const cookieName = `${name}=`;
   const cookies = document.cookie.split(";");
@@ -36,10 +36,10 @@ function getCookie(name) {
   }
   return null;
 }
- 
+
 const colorButtons = document.querySelectorAll(".color-button");
 const body = document.body;
- 
+
 colorButtons.forEach(function (button, index) {
   button.style.backgroundColor = `var(--color-${index + 1})`;
   button.addEventListener("click", function () {
@@ -67,10 +67,10 @@ colorButtons.forEach(function (button, index) {
     });
   });
 });
- 
+
 const themeColor = getCookie("theme-color");
 const textColor = getCookie("text-color");
- 
+
 if (themeColor && textColor) {
   body.style.backgroundColor = themeColor;
   body.style.color = textColor;
@@ -91,8 +91,6 @@ if (themeColor && textColor) {
     }
   });
 }
-
-
 
 // Fetch notes from the server and initialize Fuse object
 fetch("/users/dashboard/notes/search")
@@ -140,4 +138,11 @@ function renderSearchResults(results) {
 //gives a pop-up before you delete a note//
 function confirmDelete() {
   return confirm("Are you sure you want to delete this note?");
+}
+
+//previews the image that the user chooses for the note//
+function previewImage(event) {
+  const imagePreview = document.getElementById("imagePreview");
+  imagePreview.style.display = "block";
+  imagePreview.src = URL.createObjectURL(event.target.files[0]);
 }

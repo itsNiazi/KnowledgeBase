@@ -1,15 +1,15 @@
 <div class="container-card">
   <div class="card-form note">
-    <form action="/users/dashboard/notes/<%= note.id %>/edit" method="POST">
+    <form action="/users/dashboard/notes/<%= note.id %>/edit" method="POST"  enctype="multipart/form-data">
       <fieldset class="centered-fieldset">
         <legend class="login-kb">Edit note</legend>
         <div class="item-container">
           <input type="text" name="title" value="<%= note.title %>" placeholder="Title" required /><br />
-
           <input type="text" name="category" value="<%= note.category %>" placeholder="Category" required /><br />
         </div>
         <textarea class="content" name="content" placeholder="Write here" required><%= note.content %></textarea><br />
-
+        <input type="file" id="note_image" name="filename" accept="image/*" onchange="previewImage(event)"/>
+        <img id="imagePreview" src="<% if (note.note_image) { %>data:image/<%= note.note_image_format %>;base64,<%= Buffer.from(note.note_image).toString('base64') %><% } %>" alt="Note Image" />
         <input class="save-note" type="submit" value="Save" />
       </fieldset>
     </form>

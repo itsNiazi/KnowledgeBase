@@ -4,10 +4,16 @@
       <legend class="login-kb">
         <%= note.title %>
       </legend>
-<div class="content"> <p>
-  <%= note.content %>
-</p></div>
-     
+      <div class="content"> 
+        <p><%= note.content %></p>
+        <% if (note.note_image) { %>
+          <% if (note.note_image_format === 'jpeg') { %>
+            <img id="imagePreviewJPEG" src="data:image/jpeg;base64,<%= Buffer.from(note.note_image).toString('base64') %>" alt="Image Preview" />
+          <% } else { %>
+            <img id="imagePreviewPNG" src="data:image/png;base64,<%= Buffer.from(note.note_image).toString('base64') %>" alt="Image Preview" />
+          <% } %>
+        <% } %>
+      </div>
       <div class="edit-delete">
         <a class="edit-note" href="/users/dashboard/notes/<%= note.id %>/edit" class="btn btn-secondary">Edit</a>
         <form class="delete-btn" method="POST" action="/users/dashboard/notes/<%= note.id %>"onsubmit="return confirmDelete()">

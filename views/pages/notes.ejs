@@ -1,6 +1,6 @@
 <div class="container-card">
   <div class="card-form note">
-    <form action="/users/dashboard/notes/add" method="POST">
+    <form action="/users/dashboard/notes/add" method="POST" enctype="multipart/form-data">
       <fieldset class="centered-fieldset">
         <legend class="login-kb">Write note</legend>
         <div class="item-container">
@@ -27,6 +27,13 @@
           placeholder="Write here"
           required
         ></textarea>
+        <input type="file" id="note_image" name="filename" accept="image/*"  onchange="previewImage(event)" />
+        <% if (note && note.note_image) { %>
+          <img id="imagePreviewJPEG" src="data:image/jpeg;base64,<%= Buffer.from(note.note_image).toString('base64') %>" alt="Image Preview"/>
+          <img id="imagePreviewPNG" src="data:image/png;base64,<%= Buffer.from(note.note_image).toString('base64') %>" alt="Image Preview"/>
+        <% } else { %>
+          <img id="imagePreview" src="#" alt="Image Preview" style="display: none;" />
+        <% } %>
         <input class="save-note" type="submit" value="Save note" />
       </fieldset>
     </form>

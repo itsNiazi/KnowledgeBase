@@ -17,6 +17,7 @@ CREATE TABLE notes (
     category VARCHAR(255) NOT NULL,
     created TIMESTAMP NOT NULL,
     updated TIMESTAMP NOT NULL,
+    note_image BYTEA,
     FOREIGN KEY (user_id) REFERENCES users (id) 
 );
 
@@ -37,7 +38,7 @@ CREATE TABLE user_achievements (
 );
 
 create table citations(
-id SERIAL PRIMARY KEY,
-text VARCHAR(255),
-author VARCHAR(255)
+    id SERIAL PRIMARY KEY,
+    text VARCHAR(255),
+    author VARCHAR(255)
 );

@@ -4,7 +4,8 @@ const Fuse = require("fuse.js");
 
 // Add notes form page
 function getNote(req, res) {
-  res.render("pages/notes");
+  const note = {};
+  res.render("pages/notes", { note });
 }
 
 // Submit notes form
@@ -14,16 +15,23 @@ async function postNote(req, res) {
     const userId = req.user.id;
     const created = new Date();
     const updated = created;
+    let note_image = null;
+
+    if (req.file) {
+      note_image = req.file.buffer;
+    }
+
     await pool.query(
-      "INSERT INTO notes (user_id, title, content, category, created, updated) VALUES ($1, $2, $3, $4, $5, $6)",
-      [userId, title, content, category, created, updated]
+      "INSERT INTO notes (user_id, title, content, category, created, updated, note_image) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+      [userId, title, content, category, created, updated, note_image]
     );
     await pool.query("UPDATE users SET amount = amount + 1 WHERE id = $1", [
       userId,
     ]);
-    await pool.query("UPDATE users SET totalamount = totalamount + 1 WHERE id = $1", [
-      userId,
-    ]);
+    await pool.query(
+      "UPDATE users SET totalamount = totalamount + 1 WHERE id = $1",
+      [userId]
+    );
     res.redirect("/users/dashboard/notes");
   } catch (err) {
     console.error(err);
@@ -121,7 +129,6 @@ async function deleteNote(req, res) {
       userId,
     ]);
     await pool.query("DELETE FROM notes WHERE id = $1", [noteId]);
-    await pool.query("");
     res.redirect("/users/dashboard/notes");
   } catch (err) {
     console.error(err);
@@ -150,9 +157,22 @@ async function updateNote(req, res) {
     const noteId = req.params.id;
     const updated = new Date();
     const { title, category, content } = req.body;
+
+    const existingNote = await pool.query("SELECT * FROM notes WHERE id = $1", [
+      noteId,
+    ]);
+
+    let note_image = null;
+
+    if (req.file) {
+      note_image = req.file.buffer;
+    } else {
+      note_image = existingNote.rows[0].note_image;
+    }
+
     await pool.query(
-      "UPDATE notes SET title = $1, content = $2, category = $3, updated = $4 WHERE id = $5 ",
-      [title, content, category, updated, noteId]
+      "UPDATE notes SET title = $1, content = $2, category = $3, note_image = $4, updated = $5 WHERE id = $6 ",
+      [title, content, category, note_image, updated, noteId]
     );
     const result = await pool.query("SELECT * FROM notes WHERE id = $1", [
       noteId,

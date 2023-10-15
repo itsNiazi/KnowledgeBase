@@ -94,7 +94,7 @@ async function getDashboard(req, res) {
       welcomeText,
       profileImage,
       quoteText,
-      quoteAuthor
+      quoteAuthor,
     });
   } catch (err) {
     console.log(err);
@@ -104,23 +104,34 @@ async function getDashboard(req, res) {
 
 // Return random quote
 async function getQuote(req, res) {
-  const randomNumber = Math.floor(Math.random() * 50) + 1;
+  const randomNumber = Math.floor(Math.random() * 3) + 1;
 
-  const result = await pool.query("SELECT text, author FROM citations WHERE id = $1", [randomNumber]);
-  const quoteText = result.rows[0].text;
-  const quoteAuthor = result.rows[0].author;
+  const result = await pool.query(
+    "SELECT text, author FROM citations WHERE id = $1",
+    [randomNumber]
+  );
 
-  return {
-    quoteText,
-    quoteAuthor,
-  };
+  if (result.rows.length > 0) {
+    const quoteText = result.rows[0].text;
+    const quoteAuthor = result.rows[0].author;
+
+    return {
+      quoteText,
+      quoteAuthor,
+    };
+  } else {
+    return {
+      quoteText: "No Quotes Found",
+      quoteAuthor: "No Authors Found",
+    };
+  }
 }
 
 // Return user's image
 async function getImage(req, res) {
   const userId = req.user.id;
   const result = await pool.query(
-    "SELECT profileImage FROM users WHERE id = $1",
+    "SELECT profileimage FROM users WHERE id = $1",
     [userId]
   );
   const profilePhoto = result.rows[0].profileimage;
@@ -144,7 +155,7 @@ async function getImage(req, res) {
   return {
     username: req.user.username,
     welcomeText,
-    profileImage: imagePath
+    profileImage: imagePath,
   };
 }
 
@@ -179,11 +190,12 @@ async function uploadImage(req, res) {
       userId,
     ]);
 
-    return res.render("dashboard");
+    return res.render("pages/dashboard");
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error.");
   }
+  node;
 }
 
 // Delete user's image
